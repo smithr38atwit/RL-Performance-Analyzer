@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rocket League Performance Analyzer</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="script.js"></script>
+</head>
+
+<body onload="ping()">
+    <nav>
+        <input type="text" name="player-search" placeholder="Search...">
+        <div id="player-1" class="player"><span>Player 1</span></div>
+        <div id="player-2" class="player"><span>Player 2</span></div>
+        <div id="player-3" class="player"><span>Player 3</span></div>
+        <span id="bc-conn" class="material-icons bc-conn" title="Cannot connect to Ballchasing API">wifi_off</span>
+    </nav>
+    <main>
+        <section id="player-scores">
+            <span id="offense" class="score">90</span>
+            <span id="defense" class="score">90</span>
+            <span id="overall" class="score">90</span>
+            <div id="score-labels">
+                <span>Offense</span>
+                <span>Defense</span>
+                <span>Overall</span>
+            </div>
+        </section>
+        <section id="performance-graphs">
+            <span class="graph">Graph 1</span>
+            <span class="graph">Graph 2</span>
+        </section>
+    </main>
+</body>
+
+</html>

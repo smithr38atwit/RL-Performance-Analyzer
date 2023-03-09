@@ -1,0 +1,91 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1rem;
+}
+nav {
+    display: inline-block;
+    background-color: lightgray;
+    padding: 1rem;
+    width: 8rem;
+}
+main {
+    display: inline-block;
+    vertical-align: top;
+    padding: 1rem;
+}
+
+input {
+    display: block;
+    width: 90%;
+    margin: 0 auto;
+}
+
+.player {
+    /* make background circle */
+    background-color: #6e839b;
+    border-radius: 50%;
+    height: 6rem;
+    width: 6rem;
+
+    /* center text */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    margin: 2rem auto;
+    color: white;
+}
+
+.score {
+    /* make background circle */
+    background-color: lightgray;
+    border-radius: 50%;
+    height: 8.5rem;
+    width: 8.5rem;
+
+    /* center text */
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+
+    font-size: 2.25rem;
+}
+
+.bc-conn {
+    float: right;
+    visibility: hidden;
+}
+
+#defense {
+    margin: 0 3.5rem;
+}
+
+#score-labels {
+    background-color: lightgray;
+    padding: .5rem;
+    margin: .75rem auto;
+}
+#score-labels span:first-child {
+    margin-left: 2rem;
+}
+#score-labels span:nth-child(2) {
+    margin-left: 9rem;
+}
+#score-labels span:last-child {
+    margin-left: 8.75rem;
+}
+
+.graph {
+    background-color: lightgray;
+    display: inline-block;
+    height: 13rem;
+    width: 16rem;
+    margin: 1rem .5rem;
+
+    /* center text */
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+}
