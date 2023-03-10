@@ -9,14 +9,23 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 function ping() {
-    return __awaiter(this, void 0, void 0, function* () {
-        let response = yield fetch("http://127.0.0.1:8000", { method: "GET" });
-        let data = (yield response.json());
-        console.debug("--- GET: http://127.0.0.1:8000 ---");
-        console.debug(data);
-        if (data.status_code != 200) {
-            document.getElementById("bc-conn").style.visibility = "visible";
-            console.debug("Ballchasing API error: " + (data === null || data === void 0 ? void 0 : data.error));
+    fetch("http://127.0.0.1:8000", {
+        method: "GET"
+    })
+        .then((response) => __awaiter(this, void 0, void 0, function* () {
+        if (!response.ok) {
+            const data = yield response.json();
+            console.log(data.message);
+            throw new Error(data.error);
         }
+        return response.json();
+    }))
+        .then(data => {
+        console.debug("--- GET: http://127.0.0.1:8000 ---");
+        console.log(data.message);
+    })
+        .catch(error => {
+        document.getElementById("bc-conn").style.visibility = "visible";
+        console.debug(error);
     });
 }

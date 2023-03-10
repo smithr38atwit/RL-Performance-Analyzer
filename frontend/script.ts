@@ -1,18 +1,26 @@
 interface Ping {
-    status_code: number;
+    message: string;
     error: string | null;
 }
 
-async function ping() {
-    let response = await fetch("http://127.0.0.1:8000", { method: "GET" });
-    let data: Ping = (await response.json()) as Ping;
-
-    console.debug("--- GET: http://127.0.0.1:8000 ---");
-    console.debug(data);
-
-    // Show connection error icon if bad status code is returned
-    if (data.status_code != 200) {
-        document.getElementById("bc-conn")!.style.visibility = "visible";
-        console.debug("Ballchasing API error: " + data?.error);
-    }
+function ping() {
+    fetch("http://127.0.0.1:8000", {
+        method: "GET"
+    })
+        .then(async response => {
+            if (!response.ok) {
+                const data = await response.json();
+                console.log(data.message);
+                throw new Error(data.error);
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.debug("--- GET: http://127.0.0.1:8000 ---");
+            console.log(data.message);
+        })
+        .catch(error => {
+            document.getElementById("bc-conn")!.style.visibility = "visible";
+            console.debug(error);
+        })
 }
