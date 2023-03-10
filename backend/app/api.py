@@ -1,4 +1,4 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, Response
 from fastapi.middleware.cors import CORSMiddleware
 import requests
 import os
@@ -22,20 +22,28 @@ app.add_middleware(
 )
 
 
-@app.get('/') # Root endpoint (GET http://127.0.0.1:8000)
-async def read_root():
+@app.get('/', status_code=200) # Root endpoint (GET http://127.0.0.1:8000)
+async def read_root(response: Response):
     """ Pings the ballchasing API to check connection and token validity
 
-    Returns: a Ping object
+    Parameters
+    ----------
+        response: reponse status_code; set by read_root function 
+
+    Returns
+    -------
+        A Ping object
     """
 
     load_dotenv() # load environment variables from ".env"
     headers = {"Authorization": os.getenv('TOKEN')}
     r = requests.get(bc_url, headers=headers) # Ping
 
-    data: dict = {"status_code" : r.status_code}
+    response.status_code = r.status_code
+    data: dict = {"message" : "RL-Perforamnce Analyzer API connected."}
     if r.status_code != 200:
         data["error"] = r.json()["error"]
+        data["message"] += " Error with ballchasing API."
     ping = Ping(**data)
 
     return ping
