@@ -24,3 +24,5 @@ function ping() {
             console.debug(error);
         })
 }
+
+//test
