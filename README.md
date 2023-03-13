@@ -6,7 +6,7 @@ To update requirements.txt if you add a new package: ```pip freeze > requirement
 ### Setup your Ballchasing API token
 1. Go to [ballchasing](https://ballchasing.com/upload) and sign in with steam
 2. Generate an upload token
-3. Create a file in your main folder called ".env" and add your token to it with format ```TOKEN={yourToken}```  
+3. Create a file in your main folder called ".env" and add your token to it with format ```TOKEN=yourToken```  
   
 ***Do not commit .venv or .env to github***
   
