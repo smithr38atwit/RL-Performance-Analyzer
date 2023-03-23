@@ -1,14 +1,18 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import './styles/index.css';
+import PlayerList from './components/PlayerList';
+import Scores from './components/Scores';
+import PerformanceGraphs from './components/PerformanceGraphs';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <h1> YUH </h1>
-      </header>
-    </div>
+    <>
+      <PlayerList />
+      <main>
+        <Scores />
+        <PerformanceGraphs />
+      </main>
+    </>
   );
 }
 
