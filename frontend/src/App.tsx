@@ -1,13 +1,13 @@
 import React from 'react';
 import './styles/index.css';
-import PlayerList from './components/PlayerList';
+import PlayerBox from './components/PlayerBox';
 import Scores from './components/Scores';
 import PerformanceGraphs from './components/PerformanceGraphs';
 
 function App() {
   return (
     <>
-      <PlayerList />
+      <PlayerBox />
       <main>
         <Scores />
         <PerformanceGraphs />

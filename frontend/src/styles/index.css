@@ -1,3 +1,6 @@
+* {
+    box-sizing: border-box;
+}
 body {
     display: flex;
     justify-content: center;
@@ -22,6 +25,11 @@ input {
     margin: 0 auto;
 }
 
+.player-container {
+    display: flex;
+    flex-direction: column;
+    margin: 1rem auto;
+}
 .player {
     /* make background circle */
     background-color: #6e839b;
@@ -34,8 +42,11 @@ input {
     justify-content: center;
     align-items: center;
 
-    margin: 2rem auto;
+    margin: auto;
     color: white;
+}
+.player-container button {
+    margin: .25rem auto 0;
 }
 
 .score {
