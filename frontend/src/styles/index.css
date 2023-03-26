@@ -25,10 +25,16 @@ input {
     margin: 0 auto;
 }
 
+
+/* ------ Player Icon ------ */
+
 .player-container {
     display: flex;
     flex-direction: column;
     margin: 1rem auto;
+}
+.player-container button {
+    margin: .25rem auto 0;
 }
 .player {
     /* make background circle */
@@ -45,9 +51,11 @@ input {
     margin: auto;
     color: white;
 }
-.player-container button {
-    margin: .25rem auto 0;
+.player span {
+    /* display: none; */
+    color: orange;
 }
+
 
 .score {
     /* make background circle */

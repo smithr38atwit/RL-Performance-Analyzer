@@ -5,4 +5,5 @@ export interface Ping {
 
 export interface PlayerModel {
     name: string;
+    hasReplays: boolean;
 }
