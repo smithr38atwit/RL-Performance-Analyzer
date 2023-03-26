@@ -3,7 +3,7 @@ from fastapi.middleware.cors import CORSMiddleware
 import requests
 import os
 from dotenv import load_dotenv
-from app.model import Ping, FilteredReplays
+from app.model import FilteredReplays
 
 app = FastAPI()
 bc_url = "https://ballchasing.com/api/"
@@ -23,39 +23,29 @@ app.add_middleware(
 )
 
 
-@app.get('/', status_code=200) # Root endpoint (GET http://127.0.0.1:8000)
-async def read_root(response: Response):
-    """ Pings the ballchasing API to check connection and token validity
-
-    Parameters
-    ----------
-        response: reponse status_code; set by read_root function 
-
-    Returns
-    -------
-        A Ping object
-    """
-
+@app.get('/') # Pings ballchasing api. Return true if ping was successful; otherwise, return false
+async def read_root():
     headers = {"Authorization": os.getenv('TOKEN')}
     r = requests.get(bc_url, headers=headers) # Ping
 
-    response.status_code = r.status_code
-    data: dict = {"message" : "RL-Perforamnce Analyzer API connected."}
-    if r.status_code != 200:
-        data["error"] = r.json()["error"]
-        data["message"] += " Error with ballchasing API."
-    ping = Ping(**data)
+    # If ping was unsuccessful, return false
+    if (r.status_code != 200):
+        return False
+    else:
+        return True
 
-    return ping
-
-
-@app.get('/has_replays/{player_name}')
+@app.get('/has_replays/{player_name}') # Check if replays exists for a given player. Returns true if replay is found; otherwise, return false
 async def has_replays(player_name: str):
     headers = {'Authorization': os.getenv('TOKEN')}
     params = {'player-name': f'"{player_name}"', 'count': 1}
-    r = requests.get(bc_url + f'replays', params=params, headers=headers)
-    data: FilteredReplays = r.json()
-    if (len(data['list']) > 0):
+    r = requests.get(f'{bc_url}replays', params=params, headers=headers) # Filter replays
+
+    if (r.status_code != 200):
+        return False
+    
+    data = r.json()
+    replays = FilteredReplays(**data)
+    if (len(replays.list) > 0):
         return True
     else:
         return False

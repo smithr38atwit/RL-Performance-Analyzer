@@ -1,9 +1,13 @@
 const api = 'http://127.0.0.1:8000';
 
 export function getRoot() {
-    return fetch(api, { method: "GET" });
+    const url = api;
+    console.debug(`GET: ${url}`);
+    return fetch(url, { method: 'GET' });
 }
 
 export function hasReplays(playerName: string) {
-    return fetch(`${api}/has_replays/${playerName}`)
+    const url = `${api}/has_replays/${playerName}`;
+    console.debug(`GET: ${url}`);
+    return fetch(url, { method: 'GET' });
 }
