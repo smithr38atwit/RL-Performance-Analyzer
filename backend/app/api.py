@@ -3,10 +3,11 @@ from fastapi.middleware.cors import CORSMiddleware
 import requests
 import os
 from dotenv import load_dotenv
-from app.model import Ping
+from app.model import Ping, FilteredReplays
 
 app = FastAPI()
 bc_url = "https://ballchasing.com/api/"
+load_dotenv() # load environment variables from ".env"
 
 # CORS(Cross Origin Resource Sharing) allows requests from the frontend
 origins = [
@@ -35,7 +36,6 @@ async def read_root(response: Response):
         A Ping object
     """
 
-    load_dotenv() # load environment variables from ".env"
     headers = {"Authorization": os.getenv('TOKEN')}
     r = requests.get(bc_url, headers=headers) # Ping
 
@@ -47,3 +47,15 @@ async def read_root(response: Response):
     ping = Ping(**data)
 
     return ping
+
+
+@app.get('/has_replays/{player_name}')
+async def has_replays(player_name: str):
+    headers = {'Authorization': os.getenv('TOKEN')}
+    params = {'player-name': f'"{player_name}"', 'count': 1}
+    r = requests.get(bc_url + f'replays', params=params, headers=headers)
+    data: FilteredReplays = r.json()
+    if (len(data['list']) > 0):
+        return True
+    else:
+        return False
