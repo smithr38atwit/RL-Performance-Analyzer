@@ -1,47 +1,51 @@
+/* General */
+
 * {
     box-sizing: border-box;
 }
-body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 1rem;
-}
-nav {
-    display: inline-block;
-    background-color: lightgray;
-    padding: 1rem;
-    width: 8rem;
-}
-main {
-    display: inline-block;
-    vertical-align: top;
-    padding: 1rem;
+
+html, body {
+    height: 100%;
+    margin: 0;
 }
 
-input {
+#root {
+    height: 100%;
+}
+
+
+/* ------ Add Player Box ------ */
+
+nav#player-box {
+    display: inline-block;
+    height: 100%;
+    width: 15rem;
+    background-color: lightgray;
+    padding: 0.75rem;
+}
+
+nav>input {
     display: block;
     width: 90%;
     margin: 0 auto;
 }
-
-
-/* ------ Player Icon ------ */
 
 .player-container {
     display: flex;
     flex-direction: column;
     margin: 1rem auto;
 }
+
 .player-container button {
     margin: .25rem auto 0;
 }
+
 .player {
     /* make background circle */
     background-color: #6e839b;
     border-radius: 50%;
-    height: 6rem;
-    width: 6rem;
+    height: 7rem;
+    width: 7rem;
 
     /* center text */
     display: flex;
@@ -51,25 +55,9 @@ input {
     margin: auto;
     color: white;
 }
+
 .player span {
-    /* display: none; */
     color: orange;
-}
-
-
-.score {
-    /* make background circle */
-    background-color: lightgray;
-    border-radius: 50%;
-    height: 8.5rem;
-    width: 8.5rem;
-
-    /* center text */
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
-
-    font-size: 2.25rem;
 }
 
 .bc-conn {
@@ -77,34 +65,69 @@ input {
     visibility: hidden;
 }
 
-#defense {
-    margin: 0 3.5rem;
-}
 
-#score-labels {
-    background-color: lightgray;
-    padding: .5rem;
-    margin: .75rem auto;
-}
-#score-labels span:first-child {
-    margin-left: 2rem;
-}
-#score-labels span:nth-child(2) {
-    margin-left: 9rem;
-}
-#score-labels span:last-child {
-    margin-left: 8.75rem;
-}
+/* Main content */
 
-.graph {
-    background-color: lightgray;
+main {
     display: inline-block;
-    height: 13rem;
-    width: 16rem;
-    margin: 1rem .5rem;
+    margin: auto;
+    vertical-align: top;
+    padding: 1rem;
+}
 
-    /* center text */
+main nav {
+    height: fit-content;
+}
+
+nav a {
+    display: inline-block;
+    color: white;
+    text-decoration: none;
+    background-color: #6e839b;
+    padding: 0.5rem;
+}
+
+
+/* Individual Player Scores  */
+
+#player-stats {
+    width: 100%;
+    background-color: #6e839b;
+    padding: 2rem;
+}
+
+.scores {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 0.5rem;
+    justify-items: center;
+}
+
+.score {
+    background-color: lightgray;
+    border-radius: 50%;
+    height: 10rem;
+    width: 10rem;
+
     display: inline-flex;
     justify-content: center;
     align-items: center;
+
+    font-size: 2.25rem;
+}
+
+.rank {
+    background-color: darkgray;
+    height: 10rem;
+    width: 10rem;
+
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+
+    font-size: 2.25rem;
+}
+
+.score-label {
+    font-size: 2rem;
 }

@@ -7,6 +7,10 @@ function PlayerBox() {
     const [players, setPlayers] = useState<PlayerModel[]>([]);
     const playerNameRef = useRef<HTMLInputElement>(null);
 
+    useEffect(() => {
+        ping();
+    }, [])
+
     async function ping() {
         const response = await Api.getRoot();
         const success: boolean = await response.json();
@@ -15,11 +19,6 @@ function PlayerBox() {
             document.getElementById("bc-conn")!.style.visibility = "visible";
         }
     }
-
-    useEffect(() => {
-        ping();
-    }, [])
-
 
     async function addPlayer() {
         const name = playerNameRef.current!.value;
@@ -46,10 +45,20 @@ function PlayerBox() {
     }
 
     return (
-        <nav>
+        // TODO: Change to form (?)
+        <nav id='player-box'>
             <input ref={playerNameRef} type="text" name="player-search" placeholder="Search..." />
             <button onClick={addPlayer}>Add player</button>
             <PlayerList players={players} removePlayer={removePlayer} />
+            <div id="filters">
+                <h3>Filters</h3>
+                <input type="checkbox" name="filters[]" id="filter1" value={1} />
+                <label htmlFor="filter1">Filter 1</label><br />
+                <input type="checkbox" name="filters[]" id="filter2" value={2} />
+                <label htmlFor="filter2">Filter 2</label><br />
+                <input type="checkbox" name="filters[]" id="filter3" value={3} />
+                <label htmlFor="filter3">Filter 3</label><br />
+            </div>
             <span id="bc-conn" className="material-icons bc-conn" title="Cannot connect to Ballchasing API">wifi_off</span>
         </nav>
     );

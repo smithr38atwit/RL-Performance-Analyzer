@@ -1,6 +1,7 @@
 import React from 'react';
 import { PlayerModel } from '../scripts/model';
 
+// TODO: (maybe) move player component into PlayerList component to reduce file clutter
 function Player({ player, removePlayer }: { player: PlayerModel, removePlayer: (e: string) => void }) {
     const warningStyle = {
         display: player.hasReplays ? 'none' : 'inline'
