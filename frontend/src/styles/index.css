@@ -132,3 +132,14 @@ nav a {
 .score-label {
     font-size: 2rem;
 }
+
+nav>.placeholder{
+    /* make background circle */
+    background-color: #6e839b;
+    border-radius: 50%;
+    height: 7rem;
+    width: 7rem;
+    margin-top: 1rem;
+    margin-left: 3rem;
+    /* margin-bottom: 1rem; */
+}
