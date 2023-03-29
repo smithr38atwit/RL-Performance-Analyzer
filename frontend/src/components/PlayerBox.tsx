@@ -49,23 +49,12 @@ function PlayerBox() {
   return (
     // TODO: Change to form (?)
     <nav id="player-box">
-      <input
-        ref={playerNameRef}
-        type="text"
-        name="player-search"
-        placeholder="Search..."
-      />
-      <button className="material-icons-outlined" onClick={addPlayer}>
-        add_circle_outline
-      </button>
+      <div className="player-add">
+        <input ref={playerNameRef} type="text" name="player-search" placeholder="Search..." />
+        <button className="material-icons-outlined" onClick={addPlayer}>add_circle_outline</button>
+      </div>
       <PlayerList players={players} removePlayer={removePlayer} />
-      <span
-        id="bc-conn"
-        className="material-icons bc-conn"
-        title="Cannot connect to Ballchasing API"
-      >
-        wifi_off
-      </span>
+      <span id="bc-conn" className="material-icons bc-conn" title="Cannot connect to Ballchasing API">wifi_off</span>
     </nav>
   );
 }

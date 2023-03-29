@@ -20,27 +20,24 @@ html, body {
 nav#player-box {
     display: inline-block;
     height: 100%;
-    width: 15rem;
+    width: 16rem;
     background-color: lightgray;
     padding: 0.75rem;
     align-items: center;
 }
 
-nav>input{
-    display: block;
-    width: 90%;
-    margin: 0 auto;
-
+.player-add {
+    display: flex;
+    justify-content: center;
+    gap: .5rem;
 }
-nav>button{
-    margin-left: 40%;
-    margin-top: 5%;
+.player-add input {
+    margin: 0;
+}
+.player-add button {
     background-color: rgb(107, 182, 102);
-    border-radius: 20%;
-    -webkit-border-radius: 20%;
-    -moz-border-radius: 20%;
-    -ms-border-radius: 20%;
-    -o-border-radius: 20%;
+    border-radius: 15%;
+    margin: 0;
 }
 
 
