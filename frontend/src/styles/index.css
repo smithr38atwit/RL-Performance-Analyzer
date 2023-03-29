@@ -144,3 +144,12 @@ nav a {
 .score-label {
     font-size: 2rem;
 }
+
+.placeholder {
+    /* make background circle */
+    background-color: #6e839b;
+    border-radius: 50%;
+    height: 7rem;
+    width: 7rem;
+    margin: 1rem auto 0;
+}
