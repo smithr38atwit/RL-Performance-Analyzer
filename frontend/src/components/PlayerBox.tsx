@@ -1,67 +1,78 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState, useRef } from "react";
 import { KeyboardEvent } from 'react';
-import * as Api from '../scripts/api';
-import { PlayerModel } from '../scripts/model';
-import PlayerList from './PlayerList';
+import * as Api from "../scripts/api";
+import { PlayerModel } from "../scripts/model";
+import PlayerList from "./PlayerList";
 
 function PlayerBox() {
-    const [players, setPlayers] = useState<PlayerModel[]>([]);
-    const playerNameRef = useRef<HTMLInputElement>(null);
+  const [players, setPlayers] = useState<PlayerModel[]>([]);
+  const playerNameRef = useRef<HTMLInputElement>(null);
 
-    useEffect(() => {
-        ping();
-    }, [])
+  useEffect(() => {
+    ping();
+  }, []);
 
-    async function ping() {
-        const response = await Api.getRoot();
-        const success: boolean = await response.json();
+  async function ping() {
+    const response = await Api.getRoot();
+    const success: boolean = await response.json();
 
-        if (!success) {
-            document.getElementById("bc-conn")!.style.visibility = "visible";
-        }
+    if (!success) {
+      document.getElementById("bc-conn")!.style.visibility = "visible";
     }
+  }
 
-    async function addPlayer() {
-        const name = playerNameRef.current!.value;
-        if (name === '' || players.length === 3 || players.filter(player => player.name === name).length > 0) return;
+  async function addPlayer() {
+    const name = playerNameRef.current!.value;
+    if (name === '' || players.length === 3 || players.filter(player => player.name === name).length > 0) return;
 
-        const response = await Api.hasReplays(name)
-        const hasReplays: boolean = await response.json()
+    const response = await Api.hasReplays(name);
+    const hasReplays: boolean = await response.json();
 
 
-        setPlayers(prevPlayers => {
-            const newPlayers: PlayerModel[] = [...prevPlayers, { name: name, hasReplays: hasReplays }];
-            return newPlayers;
-        })
-        playerNameRef.current!.value = '';
-        console.log(`Number of players: ${players.length}`);
-        document.getElementById(`placeholder${players.length}`)!.style.display = "none";
-    }
+    setPlayers(prevPlayers => {
+      const newPlayers: PlayerModel[] = [...prevPlayers, { name: name, hasReplays: hasReplays }];
+      return newPlayers;
+    })
+    playerNameRef.current!.value = '';
+    console.log(`Number of players: ${players.length}`);
+    document.getElementById(`placeholder${players.length}`)!.style.display = "none";
+  }
 
-    function removePlayer(name: string) {
-        setPlayers(prevPlayers => {
-            const newPlayers = prevPlayers.filter(player => player.name !== name)
-            return newPlayers;
-        })
-        console.log(`Number of players: ${players.length}`);
-        document.getElementById(`placeholder${players.length - 1}`)!.style.display = "block";
-    }
+  function removePlayer(name: string) {
+    setPlayers(prevPlayers => {
+      const newPlayers = prevPlayers.filter(player => player.name !== name)
+      return newPlayers;
+    })
+    console.log(`Number of players: ${players.length}`);
+    document.getElementById(`placeholder${players.length - 1}`)!.style.display = "block";
+  }
 
-    function handleKeyPress(e: KeyboardEvent<HTMLInputElement>) {
-        if (e.key === "Enter") addPlayer();
-    };
+  function handleKeyPress(e: KeyboardEvent<HTMLInputElement>) {
+    if (e.key === "Enter") addPlayer();
+  };
 
-    return (
-        <nav id='player-box'>
-            <input ref={playerNameRef} onKeyDown={handleKeyPress} type="text" name="player-search" placeholder="Search..." />
-            <button onClick={addPlayer}>Add player</button>
-            <PlayerList players={players} removePlayer={removePlayer} />
-            <div id="placeholder0" className="placeholder"></div>
-            <div id="placeholder1" className="placeholder"></div>
-            <div id="placeholder2" className="placeholder"></div>
-            <span id="bc-conn" className="material-icons bc-conn" title="Cannot connect to Ballchasing API">wifi_off</span>
-        </nav>
-    );
+  return (
+    // TODO: Change to form (?)
+    <nav id="player-box">
+      <div className="player-add">
+        <input ref={playerNameRef} type="text" name="player-search" placeholder="Search..." />
+        <button className="material-icons-outlined" onClick={addPlayer}>add_circle_outline</button>
+      </div>
+      <PlayerList players={players} removePlayer={removePlayer} />
+      <span id="bc-conn" className="material-icons bc-conn" title="Cannot connect to Ballchasing API">wifi_off</span>
+    </nav>
+  );
+  return (
+    <nav id='player-box'>
+      <input ref={playerNameRef} onKeyDown={handleKeyPress} type="text" name="player-search" placeholder="Search..." />
+      <button onClick={addPlayer}>Add player</button>
+      <PlayerList players={players} removePlayer={removePlayer} />
+      <div id="placeholder0" className="placeholder"></div>
+      <div id="placeholder1" className="placeholder"></div>
+      <div id="placeholder2" className="placeholder"></div>
+      <span id="bc-conn" className="material-icons bc-conn" title="Cannot connect to Ballchasing API">wifi_off</span>
+    </nav>
+  );
 }
 
 export default PlayerBox;
