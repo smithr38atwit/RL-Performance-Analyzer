@@ -52,20 +52,11 @@ function PlayerBox() {
   };
 
   return (
-    // TODO: Change to form (?)
     <nav id="player-box">
       <div className="player-add">
-        <input ref={playerNameRef} type="text" name="player-search" placeholder="Search..." />
+        <input ref={playerNameRef} onKeyDown={handleKeyPress} type="text" name="player-search" placeholder="Search..." />
         <button className="material-icons-outlined" onClick={addPlayer}>add_circle_outline</button>
       </div>
-      <PlayerList players={players} removePlayer={removePlayer} />
-      <span id="bc-conn" className="material-icons bc-conn" title="Cannot connect to Ballchasing API">wifi_off</span>
-    </nav>
-  );
-  return (
-    <nav id='player-box'>
-      <input ref={playerNameRef} onKeyDown={handleKeyPress} type="text" name="player-search" placeholder="Search..." />
-      <button onClick={addPlayer}>Add player</button>
       <PlayerList players={players} removePlayer={removePlayer} />
       <div id="placeholder0" className="placeholder"></div>
       <div id="placeholder1" className="placeholder"></div>
