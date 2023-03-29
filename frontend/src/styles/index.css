@@ -35,7 +35,9 @@ nav#player-box {
     margin: 0;
 }
 .player-add button {
-    background-color: rgb(107, 182, 102);
+    color: rgb(70, 245, 91);
+    background-color: rgb(172, 172, 172);
+    border-color: transparent;
     border-radius: 15%;
     margin: 0;
 }
@@ -46,11 +48,16 @@ nav#player-box {
 .player-container {
     display: flex;
     flex-direction: column;
-    margin: 1rem auto;
+    margin: 30% auto;
 }
 
 .player-container button {
-    margin: .25rem auto 0;
+    margin: -18% auto 0;
+    color: rgb(222, 69, 39);
+    background-color: transparent;
+    border-color: transparent;
+    border-radius: 15%;
+    
 }
 
 .player {
@@ -151,5 +158,5 @@ nav a {
     border-radius: 50%;
     height: 7rem;
     width: 7rem;
-    margin: 1rem auto 0;
+    margin: 30% auto ;
 }
