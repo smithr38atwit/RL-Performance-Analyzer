@@ -1,9 +1,10 @@
-from fastapi import FastAPI, Response
+from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from uuid import UUID 
 import requests
 import os
 from dotenv import load_dotenv
-from app.model import FilteredReplays
+from app.model import FilteredReplays, DetailedReplay
 
 app = FastAPI()
 bc_url = "https://ballchasing.com/api/"
@@ -34,18 +35,26 @@ async def read_root():
     else:
         return True
 
-@app.get('/has_replays/{player_name}') # Check if replays exists for a given player. Returns true if replay is found; otherwise, return false
-async def has_replays(player_name: str):
+@app.get('/get_recent_replays/{player_name}') # Check if replays exists for a given player. Returns true if replay is found; otherwise, return false
+async def get_recent_replays(player_name: str):
     headers = {'Authorization': os.getenv('TOKEN')}
     params = {'player-name': f'"{player_name}"', 'count': 1}
     r = requests.get(f'{bc_url}replays', params=params, headers=headers) # Filter replays
-
     if (r.status_code != 200):
         return False
     
     data = r.json()
     replays = FilteredReplays(**data)
-    if (len(replays.list) > 0):
-        return True
-    else:
+
+    if (len(replays.list) == 0):
         return False
+    
+    replay_id = replays.list[0].id
+    r = requests.get(f'{bc_url}replays/{replay_id}', headers=headers) # Get specific replay
+    if (r.status_code != 200):
+        return False
+    
+    data = r.json()
+    replay = DetailedReplay(**data)
+
+    return replay

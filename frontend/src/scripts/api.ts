@@ -6,8 +6,8 @@ export function getRoot() {
     return fetch(url, { method: 'GET' });
 }
 
-export function hasReplays(playerName: string) {
-    const url = `${api}/has_replays/${playerName}`;
+export function getReplays(playerName: string) {
+    const url = `${api}/get_recent_replays/${playerName}`;
     console.debug(`GET: ${url}`);
     return fetch(url, { method: 'GET' });
 }

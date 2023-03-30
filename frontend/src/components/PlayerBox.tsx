@@ -25,7 +25,7 @@ function PlayerBox() {
     const name = playerNameRef.current!.value;
     if (name === '' || players.length === 3 || players.filter(player => player.name === name).length > 0) return;
 
-    const response = await Api.hasReplays(name);
+    const response = await Api.getReplays(name);
     const hasReplays: boolean = await response.json();
 
 
