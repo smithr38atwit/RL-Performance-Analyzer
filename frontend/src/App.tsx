@@ -3,7 +3,7 @@ import './styles/index.css';
 import PlayerBox from './components/PlayerBox';
 import Scores from './components/Stats';
 import 'react-circular-progressbar/dist/styles.css';
-import './custom.css';
+
 
 // import PerformanceGraphs from './components/PerformanceGraphs';
 
