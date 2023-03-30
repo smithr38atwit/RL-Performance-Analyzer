@@ -4,7 +4,8 @@
     box-sizing: border-box;
 }
 
-html, body {
+html,
+body {
     height: 100%;
     margin: 0;
 }
@@ -31,14 +32,23 @@ nav#player-box {
     justify-content: center;
     gap: .5rem;
 }
+
 .player-add input {
-    margin: 0;
+    border: 1px solid grey;
+    border-radius: 5px;
+    height: 35px;
+    width: 100%;
+    padding: 2px 23px 2px 30px;
+    outline: 0;
+    background-color: #f5f5f5;
 }
+
 .player-add button {
-    color: rgb(70, 245, 91);
-    background-color: rgb(172, 172, 172);
+    color: rgb(61, 249, 83);
+    background-color: transparent;
     border-color: transparent;
     border-radius: 15%;
+    font-size: 200%;
     margin: 0;
 }
 
@@ -57,7 +67,7 @@ nav#player-box {
     background-color: transparent;
     border-color: transparent;
     border-radius: 15%;
-    
+
 }
 
 .player {
@@ -118,7 +128,7 @@ nav a {
 
 .scores {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
     gap: 0.5rem;
     justify-items: center;
 }
@@ -136,7 +146,7 @@ nav a {
     font-size: 2.25rem;
 }
 
-.rank {
+/* .rank {
     background-color: darkgray;
     height: 10rem;
     width: 10rem;
@@ -146,10 +156,12 @@ nav a {
     align-items: center;
 
     font-size: 2.25rem;
-}
+} */
 
 .score-label {
     font-size: 2rem;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+
 }
 
 .placeholder {
@@ -158,5 +170,5 @@ nav a {
     border-radius: 50%;
     height: 7rem;
     width: 7rem;
-    margin: 30% auto ;
+    margin: 30% auto;
 }
