@@ -68,7 +68,7 @@ nav#player-box {
 }
 
 .player-container button {
-    margin: -18% auto 0;
+    margin: -25% auto 0;
     color: rgb(222, 69, 39);
     background-color: transparent;
     border-color: transparent;
@@ -141,38 +141,13 @@ nav a {
     grid-template-columns: 1fr 1fr 1fr;
     gap: 0.5rem;
     justify-items: center;
+    text-align: center;
 }
 
-.score {
-    background-color: #E8E9F3;
-    border-radius: 50%;
-    height: 10rem;
-    width: 10rem;
 
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
-
+.score-label {
     font-family: sans-serif;
-    font-size: 2.25rem;
-}
-
-.rank {
-    background-color: #A6A6A8;
-    height: 10rem;
-    width: 10rem;
-
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
-
-    font-family: sans-serif;
-    font-size: 2.25rem;
-}
-
-*/ .score-label {
-    font-family: sans-serif;
-    font-size: 2rem;
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size: 130%;
+    font-weight: bolder;
 
 }
