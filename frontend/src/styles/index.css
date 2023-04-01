@@ -12,19 +12,28 @@ body {
 
 #root {
     height: 100%;
-    white-space: nowrap;
+    background-color: #272635;
+    display: flex;
 }
 
 
 /* ------ Add Player Box ------ */
 
 nav#player-box {
-    display: inline-block;
     height: 100%;
     width: 16rem;
-    background-color: lightgray;
+    background-color: #E5E5E5;
     padding: 0.75rem;
     align-items: center;
+}
+
+.placeholder {
+    /* make background circle */
+    background-color: #6e839b;
+    border-radius: 50%;
+    height: 10rem;
+    width: 10rem;
+    margin: 30% auto;
 }
 
 .player-add {
@@ -44,21 +53,18 @@ nav#player-box {
 }
 
 .player-add button {
-    color: rgb(61, 249, 83);
-    background-color: transparent;
+    color: rgb(70, 245, 91);
+    background-color: rgb(165, 165, 165);
     border-color: transparent;
     border-radius: 15%;
     font-size: 200%;
     margin: 0;
 }
 
-
-
-
 .player-container {
     display: flex;
     flex-direction: column;
-    margin: 30% auto;
+    /* margin: auto; */
 }
 
 .player-container button {
@@ -74,14 +80,16 @@ nav#player-box {
     /* make background circle */
     background-color: #6e839b;
     border-radius: 50%;
-    height: 7rem;
-    width: 7rem;
+    height: 10rem;
+    width: 10rem;
 
     /* center text */
     display: flex;
     justify-content: center;
     align-items: center;
 
+    font-family: sans-serif;
+    font-size: 1.75rem;
     margin: auto;
     color: white;
 }
@@ -101,8 +109,8 @@ nav#player-box {
 main {
     display: inline-block;
     margin: auto;
-    vertical-align: top;
     padding: 1rem;
+    width: 1200px;
 }
 
 main nav {
@@ -111,10 +119,11 @@ main nav {
 
 nav a {
     display: inline-block;
-    color: white;
+    color: rgb(0, 0, 0);
     text-decoration: none;
-    background-color: #6e839b;
+    background-color: #4457d4;
     padding: 0.5rem;
+    font-family: sans-serif;
 }
 
 
@@ -122,7 +131,8 @@ nav a {
 
 #player-stats {
     width: 100%;
-    background-color: #6e839b;
+    height: 800px;
+    background-color: #4457d4;
     padding: 2rem;
 }
 
@@ -134,7 +144,7 @@ nav a {
 }
 
 .score {
-    background-color: lightgray;
+    background-color: #E8E9F3;
     border-radius: 50%;
     height: 10rem;
     width: 10rem;
@@ -143,11 +153,12 @@ nav a {
     justify-content: center;
     align-items: center;
 
+    font-family: sans-serif;
     font-size: 2.25rem;
 }
 
-/* .rank {
-    background-color: darkgray;
+.rank {
+    background-color: #A6A6A8;
     height: 10rem;
     width: 10rem;
 
@@ -155,20 +166,13 @@ nav a {
     justify-content: center;
     align-items: center;
 
+    font-family: sans-serif;
     font-size: 2.25rem;
-} */
+}
 
-.score-label {
+*/ .score-label {
+    font-family: sans-serif;
     font-size: 2rem;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 
-}
-
-.placeholder {
-    /* make background circle */
-    background-color: #6e839b;
-    border-radius: 50%;
-    height: 7rem;
-    width: 7rem;
-    margin: 30% auto;
 }
