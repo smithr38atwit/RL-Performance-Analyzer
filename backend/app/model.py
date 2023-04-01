@@ -35,9 +35,84 @@ class FilteredReplays(BaseModel):
 
 # ------ For individual replay API ------
 
-class ID(BaseModel):
-    platform: Optional[str]
-    id: Optional[str]
+class Positioning(BaseModel):
+    avg_distance_to_ball: float
+    avg_distance_to_ball_possession: float
+    avg_distance_to_ball_no_possession: float
+    avg_distance_to_mates: float
+    time_defensive_third: float
+    time_neutral_third: float
+    time_offensive_third: float
+    time_defensive_half: float
+    time_offensive_half: float
+    time_behind_ball: float
+    time_infront_ball: float
+    time_most_back: float
+    time_most_forward: float
+    goals_against_while_last_defender: Optional[int]
+    time_closest_to_ball: float
+    time_farthest_from_ball: float
+    percent_defensive_third: float
+    percent_offensive_third: float
+    percent_neutral_third: float
+    percent_defensive_half: float
+    percent_offensive_half: float
+    percent_behind_ball: float
+    percent_infront_ball: float
+    percent_most_back: float
+    percent_most_forward: float
+    percent_closest_to_ball: float
+    percent_farthest_from_ball: float
+
+class Movement(BaseModel):
+    avg_speed: float
+    total_distance: float
+    time_supersonic_speed: float
+    time_boost_speed: float
+    time_slow_speed: float
+    time_ground: float
+    time_low_air: float
+    time_high_air: float
+    time_powerslide: float
+    count_powerslide: int
+    avg_powerslide_duration: float
+    avg_speed_percentage: float
+    percent_slow_speed: float
+    percent_boost_speed: float
+    percent_supersonic_speed: float
+    percent_ground: float
+    percent_low_air: float
+    percent_high_air: float
+
+class Boost(BaseModel):
+    bpm: float
+    bcpm: float
+    avg_amount: float
+    amount_collected: int
+    amount_stolen: int
+    amount_collected_big: int
+    amount_stolen_big: int
+    amount_collected_small: int
+    amount_stolen_small: int
+    count_collected_big: int
+    count_stolen_big: int
+    count_collected_small: int
+    count_stolen_small: int
+    amount_overfill: int
+    amount_overfill_stolen: int
+    amount_used_while_supersonic: int
+    time_zero_boost: float
+    percent_zero_boost: float
+    time_full_boost: float
+    percent_full_boost: float
+    time_boost_0_25: float
+    time_boost_25_50: float
+    time_boost_50_75: float
+    time_boost_75_100: float
+    percent_boost_0_25: float
+    percent_boost_25_50: float
+    percent_boost_50_75: float
+    percent_boost_75_100: float
 
 class Core(BaseModel):
     shots: int
@@ -56,22 +131,18 @@ class Demo(BaseModel):
 
 class PlayerStats(BaseModel):
     core: Core
-    boost: dict[str, float]
-    movement: dict[str, float]
-    positioning: dict[str, float]
+    boost: Boost
+    movement: Movement
+    positioning: Positioning
     demo: Demo
 
 class Ball(BaseModel):
     possession_time: float
     time_in_side: float
 
-class Stats(BaseModel):
-    ball: Ball
-    core: Core
-    boost: dict[str, float]
-    movement: dict[str, float]
-    positioning: dict[str, float]
-    demo: Demo
+class ID(BaseModel):
+    platform: Optional[str]
+    id: Optional[str]
 
 class Player(BaseModel):
     start_time: float
@@ -87,7 +158,6 @@ class Player(BaseModel):
 class Team(BaseModel):
     color: str
     players: list[Player]
-    stats: Stats
 
 class Uploader(BaseModel):
     steam_id: str
