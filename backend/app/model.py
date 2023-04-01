@@ -6,6 +6,12 @@ from pydantic import BaseModel
 
 # ------ For filter replays API ------
 
+class Uploader(BaseModel):
+    steam_id: str
+    name: str
+    profile_url: str
+    avatar: str
+
 class ReplaySimple(BaseModel):
     id: UUID
     link: str
@@ -17,13 +23,11 @@ class ReplaySimple(BaseModel):
     playlist_name: str
     duration: int
     overtime: bool
-    season: int
-    season_type: str
     date: datetime
     date_has_tz: bool
     visibility: str
     created: datetime
-    uploader: Any
+    uploader: Uploader
     blue: Any
     orange: Any
 
@@ -150,7 +154,7 @@ class Player(BaseModel):
     name: str
     id: ID
     car_id: int
-    car_name: str
+    car_name: Optional[str]
     camera: dict[str, float]
     steering_sensitivity: float
     stats: PlayerStats
@@ -158,12 +162,6 @@ class Player(BaseModel):
 class Team(BaseModel):
     color: str
     players: list[Player]
-
-class Uploader(BaseModel):
-    steam_id: str
-    name: str
-    profile_url: str
-    avatar: str
 
 class DetailedReplay(BaseModel):
     id: UUID
@@ -180,8 +178,6 @@ class DetailedReplay(BaseModel):
     playlist_id: str
     duration: int
     overtime: bool
-    season: int
-    season_type: str
     date: datetime
     date_has_timezone: bool
     visibility: str
