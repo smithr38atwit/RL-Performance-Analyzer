@@ -11,7 +11,7 @@ function Stats() {
                     <CircularProgressbar
                     value={percentage}
                     text={`${percentage}`}
-                    strokeWidth={20}
+                    strokeWidth={25}
                     styles={{
                         // Customize the root svg element
                         root: {},
@@ -31,8 +31,6 @@ function Stats() {
                         trail: {
                         // Trail color
                         stroke: '#C179B9',
-                        // Whether to use rounded or flat corners on the ends - can use 'butt' or 'round'
-
                         // Rotate the trail
                         transform: 'rotate(0.25turn)',
                         transformOrigin: 'center center',
@@ -44,6 +42,7 @@ function Stats() {
                         // Text size
                         fontSize: '16px',
                         fontWeight: 'bold',
+                        fontFamily: 'sans-serif',
 
 
                         },
@@ -59,14 +58,14 @@ function Stats() {
                 <CircularProgressbar
                     value={percentage}
                     text={`${percentage}`}
-                    strokeWidth={20}
+                    strokeWidth={25}
                     styles={{
                         // Customize the root svg element
                         root: {},
                         // Customize the path, i.e. the "completed progress"
                         path: {
                         // Path color
-                        stroke: `rgba(62, 152, 199, ${percentage / 100})`,
+                        stroke: `rgba(164, 44, 214, ${percentage / 100})`,
                         // Whether to use rounded or flat corners on the ends - can use 'butt' or 'round'
                         strokeLinecap: 'round',
                         // Customize transition animation
@@ -78,9 +77,7 @@ function Stats() {
                         // Customize the circle behind the path, i.e. the "total progress"
                         trail: {
                         // Trail color
-                        stroke: '#d6d6d6',
-                        // Whether to use rounded or flat corners on the ends - can use 'butt' or 'round'
-
+                        stroke: '#C179B9',
                         // Rotate the trail
                         transform: 'rotate(0.25turn)',
                         transformOrigin: 'center center',
@@ -88,10 +85,11 @@ function Stats() {
                         // Customize the text
                         text: {
                         // Text color
-                        fill: '#f88',
+                        fill: '#2F242C',
                         // Text size
                         fontSize: '16px',
                         fontWeight: 'bold',
+                        fontFamily: 'sans-serif',
 
 
                         },
@@ -107,14 +105,14 @@ function Stats() {
                 <CircularProgressbar
                     value={percentage}
                     text={`${percentage}`}
-                    strokeWidth={20}
+                    strokeWidth={25}
                     styles={{
                         // Customize the root svg element
                         root: {},
                         // Customize the path, i.e. the "completed progress"
                         path: {
                         // Path color
-                        stroke: `rgba(62, 152, 199, ${percentage / 100})`,
+                        stroke: `rgba(164, 44, 214, ${percentage / 100})`,
                         // Whether to use rounded or flat corners on the ends - can use 'butt' or 'round'
                         strokeLinecap: 'round',
                         // Customize transition animation
@@ -126,9 +124,7 @@ function Stats() {
                         // Customize the circle behind the path, i.e. the "total progress"
                         trail: {
                         // Trail color
-                        stroke: '#d6d6d6',
-                        // Whether to use rounded or flat corners on the ends - can use 'butt' or 'round'
-
+                        stroke: '#C179B9',
                         // Rotate the trail
                         transform: 'rotate(0.25turn)',
                         transformOrigin: 'center center',
@@ -136,10 +132,11 @@ function Stats() {
                         // Customize the text
                         text: {
                         // Text color
-                        fill: '#f88',
+                        fill: '#2F242C',
                         // Text size
                         fontSize: '16px',
                         fontWeight: 'bold',
+                        fontFamily: 'sans-serif',
 
 
                         },
