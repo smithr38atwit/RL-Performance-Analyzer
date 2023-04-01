@@ -8,7 +8,7 @@ function Stats() {
         <section id="player-stats">
             <div id="main-scores" className="scores">
                 <div >
-                    <CircularProgressbar 
+                    <CircularProgressbar
                     value={percentage}
                     text={`${percentage}`}
                     strokeWidth={20}
