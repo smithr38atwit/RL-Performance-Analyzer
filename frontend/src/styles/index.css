@@ -64,7 +64,7 @@ nav#player-box {
 .player-container {
     display: flex;
     flex-direction: column;
-    /* margin: auto; */
+    margin: 30% auto;
 }
 
 .player-container button {
