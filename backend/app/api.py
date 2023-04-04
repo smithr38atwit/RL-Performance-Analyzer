@@ -62,7 +62,7 @@ async def get_recent_replays(player_name: str):
 def calculate_scores(data: DetailedReplay):
     stats = {'offense': 70, 'defense': 90, 'overall': 80}
 
-    
+    # TODO: put stat calculations here
 
     stats = Stats(**stats)
     return stats
