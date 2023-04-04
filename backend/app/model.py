@@ -185,3 +185,11 @@ class DetailedReplay(BaseModel):
     orange: Team
     playlist_name: str
     map_name: str
+
+
+# ------ Calculated Stats ------
+
+class Stats(BaseModel):
+    offense: int
+    defense: int
+    overall: int
