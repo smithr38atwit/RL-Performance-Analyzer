@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from uuid import UUID 
+from uuid import UUID
 import requests
 import os
 from dotenv import load_dotenv
