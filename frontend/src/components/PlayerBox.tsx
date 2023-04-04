@@ -4,7 +4,7 @@ import * as Api from "../scripts/api";
 import { PlayerModel } from "../scripts/model";
 import PlayerList from "./PlayerList";
 
-function PlayerBox() {
+function PlayerBox({ setStats }: { setStats: React.Dispatch<React.SetStateAction<any>> }) {
   const [players, setPlayers] = useState<PlayerModel[]>([]);
   const playerNameRef = useRef<HTMLInputElement>(null);
 
@@ -27,6 +27,11 @@ function PlayerBox() {
 
     const response = await Api.getReplays(name);
     const hasReplays: boolean = await response.json();
+    /*let data;
+    if (hasReplays) {
+      data = await response.json()
+      setStats(data);
+    }*/
 
 
     setPlayers(prevPlayers => {
