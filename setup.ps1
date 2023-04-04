@@ -1,7 +1,7 @@
 # Check python version
 $pyV = python -V
 if (!($pyV -match '3\.11\.*')) {
-    Write-Host "Please install Python 3.11.2 from https://www.python.org/ before running this script. Be sure to restart the terminal (or VS Code) before rerunning."
+    Write-Host "Please install Python 3.11 from https://www.python.org/ before running this script. Be sure to restart the terminal (or VS Code) before rerunning."
     Exit
 }
 
@@ -11,7 +11,7 @@ if ($PSScriptRoot -ne $CWD) {
     Set-Location $PSScriptRoot
 }
 
-# Set up front-end environment
+# Set up back-end environment
 Write-Host "Setting up Python environment..."
 Set-Location .\backend\
 if (!(Test-Path -Path ".\.venv")) {
@@ -21,7 +21,7 @@ if (!(Test-Path -Path ".\.venv")) {
 python -m pip install --upgrade pip
 pip install -r .\requirements.txt
 
-# Set up back-end environment
+# Set up front-end environment
 Write-Host "Installing node modules..."
 Set-Location ..\frontend\
 npm install
@@ -35,4 +35,7 @@ if (!(Test-Path $tokenEnv)) {
 }
 Write-Host "Done.
 Retrieve authorization token from https://ballchasing.com/upload and enter into the provided space in .env.
-If using VS Code, relaod window by pressing CRTL-Shift-P and typing 'reload window' to complete setup."
+If using VS Code, reload window by pressing CRTL-Shift-P and typing 'reload window' to complete setup.
+If VS Code does not select the venv as the python interpreter, you will have to do it manually:
+    Open the command pallet with CTRL-SHIFT-P and type 'Python: Select Interpreter'
+    Select python.exe within .venv -> Scripts"
