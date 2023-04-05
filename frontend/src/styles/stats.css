@@ -1,0 +1,52 @@
+main {
+    margin: 32px auto 0;
+    margin-left: 200px;
+    width: 1200px;
+    padding: 16px;
+    padding: 0px 10px;
+}
+
+
+/* ------ Nav bar ------ */
+
+main nav {
+    height: fit-content;
+}
+
+nav a {
+    display: inline-block;
+    color: rgb(0, 0, 0);
+    text-decoration: none;
+    background-color: #4457d4;
+    padding: 0.5rem;
+    font-family: sans-serif;
+}
+
+
+/* ------ Individual Player Scores ------ */
+
+#player-stats {
+    width: 100%;
+    height: 800px;
+    background-color: #4457d4;
+    padding: 32px;
+}
+
+.scores {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 0.5rem;
+    justify-items: center;
+    text-align: center;
+}
+
+.CircularProgressbar {
+    height: 15rem;
+    width: 15rem;
+}
+
+.score-label {
+    font-family: sans-serif;
+    font-size: 30px;
+    font-weight: bolder;
+}

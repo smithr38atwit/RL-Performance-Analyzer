@@ -39,8 +39,6 @@ function StatsDial(percentage: number) {
                     fontSize: '16px',
                     fontWeight: 'bold',
                     fontFamily: 'sans-serif',
-
-
                 },
                 // Customize background - only used when the `background` prop is true
                 background: {

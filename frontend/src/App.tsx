@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './styles/index.css';
+import './styles/main.css';
 import PlayerBox from './components/PlayerBox';
 import Stats from './components/Stats';
 import 'react-circular-progressbar/dist/styles.css';
@@ -13,7 +13,7 @@ function App() {
   return (
     <>
       <PlayerBox setStats={setStats} />
-      <main>
+      <main id='stats'>
         <nav>
           <a href="#player-stats">Player Statistics</a>
           <a href="#team-stats">Team Statistics</a>
