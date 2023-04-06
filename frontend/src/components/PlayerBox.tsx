@@ -30,7 +30,6 @@ function PlayerBox() {
       return newPlayers;
     })
     playerNameRef.current!.value = '';
-    console.log(`Number of players: ${players.length}`);
     document.getElementById(`placeholder${players.length}`)!.style.display = "none";
   }
 
@@ -39,7 +38,6 @@ function PlayerBox() {
       const newPlayers = prevPlayers.filter(player => player.name !== name)
       return newPlayers;
     })
-    console.log(`Number of players: ${players.length}`);
     document.getElementById(`placeholder${players.length - 1}`)!.style.display = "block";
   }
 
