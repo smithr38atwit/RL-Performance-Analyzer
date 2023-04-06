@@ -4,7 +4,7 @@ from uuid import UUID
 import requests
 import os
 from dotenv import load_dotenv
-from app.model import FilteredReplays, DetailedReplay
+from app.model import FilteredReplays, DetailedReplay, Stats
 
 app = FastAPI()
 bc_url = "https://ballchasing.com/api/"
@@ -57,4 +57,12 @@ async def get_recent_replays(player_name: str):
     data = r.json()
     replay = DetailedReplay(**data)
 
-    return replay
+    return calculate_scores(replay)
+
+def calculate_scores(data: DetailedReplay):
+    stats = {'offense': 70, 'defense': 90, 'overall': 80}
+
+    # TODO: put stat calculations here
+
+    stats = Stats(**stats)
+    return stats

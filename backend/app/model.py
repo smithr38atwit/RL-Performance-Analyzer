@@ -16,16 +16,14 @@ class ReplaySimple(BaseModel):
     id: UUID
     link: str
     rocket_league_id: str
-    replay_title: str
     map_code: str
-    map_name: str
+    map_name: Optional[str]
     playlist_id: str
     playlist_name: str
     duration: int
     overtime: bool
     date: datetime
     date_has_tz: bool
-    visibility: str
     created: datetime
     uploader: Uploader
     blue: Any
@@ -173,6 +171,7 @@ class DetailedReplay(BaseModel):
     match_guid: str
     title: str
     map_code: str
+    map_name: Optional[str]
     match_type: str
     team_size: int
     playlist_id: str
@@ -184,4 +183,11 @@ class DetailedReplay(BaseModel):
     blue: Team
     orange: Team
     playlist_name: str
-    map_name: str
+
+
+# ------ Calculated Stats ------
+
+class Stats(BaseModel):
+    offense: int
+    defense: int
+    overall: int
