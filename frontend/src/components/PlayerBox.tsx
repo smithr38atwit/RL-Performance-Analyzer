@@ -4,7 +4,7 @@ import * as Api from "../scripts/api";
 import { PlayerModel } from "../scripts/model";
 import PlayerList from "./PlayerList";
 
-function PlayerBox() {
+function PlayerBox({ setStats }: { setStats: React.Dispatch<React.SetStateAction<any>> }) {
   const [players, setPlayers] = useState<PlayerModel[]>([]);
   const playerNameRef = useRef<HTMLInputElement>(null);
 
@@ -24,6 +24,11 @@ function PlayerBox() {
     if (name === '' || players.length === 3 || players.filter(player => player.name === name).length > 0) return;
 
     const hasReplays: boolean = await Api.getReplays(name);
+    /*let data;
+    if (hasReplays) {
+      data = await response.json()
+      setStats(data);
+    }*/
 
     setPlayers(prevPlayers => {
       const newPlayers: PlayerModel[] = [...prevPlayers, { name: name, hasReplays: hasReplays }];
@@ -46,8 +51,8 @@ function PlayerBox() {
   };
 
   return (
-    <nav id="player-box">
-      <div className="player-add">
+    <div id="sidebar">
+      <div className="add-players">
         <input ref={playerNameRef} onKeyDown={handleKeyPress} type="text" name="player-search" placeholder="Search..." />
         <button className="material-icons-outlined" onClick={addPlayer}>add_circle_outline</button>
       </div>
@@ -56,8 +61,9 @@ function PlayerBox() {
       <div id="placeholder1" className="placeholder"></div>
       <div id="placeholder2" className="placeholder"></div>
       <span id="bc-conn" className="material-icons bc-conn" title="Cannot connect to Ballchasing API">wifi_off</span>
-    </nav>
+    </div>
   );
 }
 
 export default PlayerBox;
+

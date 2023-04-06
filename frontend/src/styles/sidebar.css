@@ -1,0 +1,79 @@
+#sidebar {
+    background-color: #E5E5E5;
+    height: 100%;
+    width: 200px;
+    padding: 20px 16px 16px;
+    align-items: center;
+
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+}
+
+
+/* ------ Add player input ------ */
+
+.add-players {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.add-players input {
+    border: 1px solid grey;
+    border-radius: 5px;
+    height: 25px;
+    width: 100%;
+    background-color: #f5f5f5;
+}
+
+.add-players button {
+    color: rgb(13, 216, 37);
+    background: transparent;
+    border: none;
+    font-size: 32px;
+}
+
+
+/* ------ Players and placeholders ------ */
+
+.player-container, .placeholder {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    margin: 20px auto;
+    justify-content: center;
+    align-items: center;
+}
+
+.player, .placeholder {
+    background-color: #6e839b;
+    border-radius: 50%;
+    height: 9.5rem;
+    width: 9.5rem;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-family: sans-serif;
+    font-size: 28px;
+    color: white;
+}
+
+.player-container button {
+    position: absolute;
+    bottom: 12px;
+
+    color: rgb(222, 69, 39);
+    background: none;
+    border: none;
+}
+
+
+/* Warning icon if not connected to ballchasing */
+.bc-conn {
+    float: right;
+    visibility: hidden;
+}

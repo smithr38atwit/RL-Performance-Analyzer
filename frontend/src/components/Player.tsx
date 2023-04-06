@@ -4,6 +4,7 @@ import { PlayerModel } from "../scripts/model";
 function Player({ player, removePlayer, }: { player: PlayerModel; removePlayer: (e: string) => void; }) {
   const warningStyle = {
     display: player.hasReplays ? "none" : "inline",
+    color: "orange"
   };
 
   return (
