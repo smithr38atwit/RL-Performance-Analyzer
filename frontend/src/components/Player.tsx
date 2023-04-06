@@ -13,7 +13,7 @@ function Player({ player, removePlayer, }: { player: PlayerModel; removePlayer: 
         {player.name}
         <span style={warningStyle} className="material-icons-outlined" title="No replays found for this player">priority_high</span>
       </div>
-      <button className="material-icons-outlined" onClick={() => removePlayer(player.name)}>remove_circle_outline</button>
+      <button className="material-icons-outlined" onClick={() => removePlayer(player.name)} >remove_circle_outline</button>
     </div>
   );
 }

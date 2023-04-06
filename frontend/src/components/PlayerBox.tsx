@@ -13,9 +13,7 @@ function PlayerBox({ setStats }: { setStats: React.Dispatch<React.SetStateAction
   }, []);
 
   async function ping() {
-    const response = await Api.getRoot();
-    const success: boolean = await response.json();
-
+    const success: boolean = Boolean(await Api.getRoot());
     if (!success) {
       document.getElementById("bc-conn")!.style.visibility = "visible";
     }
@@ -25,21 +23,18 @@ function PlayerBox({ setStats }: { setStats: React.Dispatch<React.SetStateAction
     const name = playerNameRef.current!.value;
     if (name === '' || players.length === 3 || players.filter(player => player.name === name).length > 0) return;
 
-    const response = await Api.getReplays(name);
-    const hasReplays: boolean = await response.json();
+    const hasReplays: boolean = await Api.getReplays(name);
     /*let data;
     if (hasReplays) {
       data = await response.json()
       setStats(data);
     }*/
 
-
     setPlayers(prevPlayers => {
       const newPlayers: PlayerModel[] = [...prevPlayers, { name: name, hasReplays: hasReplays }];
       return newPlayers;
     })
     playerNameRef.current!.value = '';
-    console.log(`Number of players: ${players.length}`);
     document.getElementById(`placeholder${players.length}`)!.style.display = "none";
   }
 
@@ -48,7 +43,6 @@ function PlayerBox({ setStats }: { setStats: React.Dispatch<React.SetStateAction
       const newPlayers = prevPlayers.filter(player => player.name !== name)
       return newPlayers;
     })
-    console.log(`Number of players: ${players.length}`);
     document.getElementById(`placeholder${players.length - 1}`)!.style.display = "block";
   }
 
