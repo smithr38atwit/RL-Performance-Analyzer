@@ -1,15 +1,16 @@
 import React from "react";
 import { CircularProgressbar } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
+import { PlayerStats } from "../scripts/model";
 
 function StatsDial(percentage: number) {
     let r = 0, g = 0, b = 0;
     //if score is above 80, graph is green
-    if(percentage >= 80){
+    if (percentage >= 80) {
         g = 255;
     }
     //if score is between 80 and 60, graph is yellow
-    else if(percentage < 80 && percentage >= 60){
+    else if (percentage < 80 && percentage >= 60) {
         r = 255;
         g = 255;
     }
@@ -66,7 +67,7 @@ function StatsDial(percentage: number) {
     );
 }
 
-function Stats({ stats }: { stats: any[] }) {
+function Stats({ stats }: { stats: PlayerStats }) {
     const percentage1 = 50, percentage2 = 90, percentage3 = 70;
     return (
         <section id="player-stats">

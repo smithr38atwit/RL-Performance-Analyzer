@@ -27,12 +27,11 @@ function PlayerBox({ setStats }: { setStats: React.Dispatch<React.SetStateAction
       setWaiting(false);
       return;
     }
-    const hasReplays: boolean = await Api.getReplays(name);
-    /*let data;
+    const replay = await Api.getReplays(name);
+    const hasReplays: boolean = Boolean(replay);
     if (hasReplays) {
-      data = await response.json()
-      setStats(data);
-    }*/
+      setStats(replay);
+    }
 
     setPlayers(prevPlayers => {
       const newPlayers: PlayerModel[] = [...prevPlayers, { name: name, hasReplays: hasReplays }];
