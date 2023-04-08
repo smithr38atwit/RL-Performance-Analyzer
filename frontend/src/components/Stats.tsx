@@ -67,21 +67,21 @@ function StatsDial(percentage: number) {
     );
 }
 
-function Stats({ stats }: { stats: PlayerStats }) {
-    const percentage1 = 50, percentage2 = 90, percentage3 = 70;
+function Stats({ stats, name }: { stats: { [name: string]: PlayerStats }, name: string }) {
+    console.log("Stats: ", stats)
     return (
         <section id="player-stats">
             <div id="main-scores" className="scores">
                 <div >
-                    {StatsDial(percentage1)}
+                    {StatsDial(stats[name].offense)}
                     <p className="score-label">Offense</p>
                 </div>
                 <div>
-                    {StatsDial(percentage2)}
+                    {StatsDial(stats[name].defense)}
                     <p className="score-label">Defense</p>
                 </div>
                 <div>
-                    {StatsDial(percentage3)}
+                    {StatsDial(stats[name].overall)}
                     <p className="score-label">Overall</p>
                 </div>
             </div>

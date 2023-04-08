@@ -57,7 +57,12 @@ async def get_recent_replays(player_name: str):
     data = r.json()
     replay = DetailedReplay(**data)
 
-    return calculate_scores(replay)
+    # testing
+    if player_name == 'a': return {'offense': 70, 'defense': 90, 'overall': 80}
+    if player_name == 'b': return {'offense': 40, 'defense': 60, 'overall': 50}
+    if player_name == 'c': return {'offense': 100, 'defense': 20, 'overall': 60}
+
+    # return calculate_scores(replay)
 
 def calculate_scores(data: DetailedReplay):
     stats = {'offense': 70, 'defense': 90, 'overall': 80}
