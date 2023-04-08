@@ -17,7 +17,6 @@ function App() {
       <main id='stats'>
         <nav>
           <a href="#player-stats">Player Statistics</a>
-          <a href="#team-stats">Team Statistics</a>
         </nav>
         <Stats stats={stats} />
       </main>

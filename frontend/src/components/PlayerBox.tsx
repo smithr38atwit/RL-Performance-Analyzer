@@ -54,12 +54,23 @@ function PlayerBox({ setStats }: { setStats: React.Dispatch<React.SetStateAction
     if (e.key === "Enter") addPlayer();
   };
 
+  function selectPlayer(){
+
+  }
   return (
     <div id="sidebar">
       <div className="add-players">
         <input disabled={waiting} ref={playerNameRef} onKeyDown={handleKeyPress} type="text" name="player-search" placeholder="Search..." />
         <button disabled={waiting} className="material-icons-outlined" onClick={addPlayer}>add_circle_outline</button>
       </div>
+
+      <select id = "selectPlayerDropdown" onChange = {selectPlayer} >  
+      <option> ---Choose Player--- </option>  
+      <option> Player 1</option>  
+      <option> Player 2 </option>   
+      <option> Player 3 </option>   
+      </select>  
+
       <PlayerList players={players} removePlayer={removePlayer} />
       <div id="placeholder0" className="placeholder"></div>
       <div id="placeholder1" className="placeholder"></div>

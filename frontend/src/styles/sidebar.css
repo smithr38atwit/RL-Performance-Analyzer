@@ -29,10 +29,12 @@
 }
 
 .add-players button {
-    color: rgb(13, 216, 37);
-    background: transparent;
+    color: rgb(20, 255, 47);
+    background-color: rgb(201, 201, 201);
+    border-radius: 15%;
     border: none;
-    font-size: 32px;
+    margin: 0.1rem;
+    font-size: 25px;
 }
 
 
