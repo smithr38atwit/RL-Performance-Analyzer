@@ -41,7 +41,7 @@ class Positioning(BaseModel):
     avg_distance_to_ball: float
     avg_distance_to_ball_possession: float
     avg_distance_to_ball_no_possession: float
-    avg_distance_to_mates: float
+    avg_distance_to_mates: Optional[float]
     time_defensive_third: float
     time_neutral_third: float
     time_offensive_third: float
@@ -49,11 +49,11 @@ class Positioning(BaseModel):
     time_offensive_half: float
     time_behind_ball: float
     time_infront_ball: float
-    time_most_back: float
-    time_most_forward: float
+    time_most_back: Optional[float]
+    time_most_forward: Optional[float]
     goals_against_while_last_defender: Optional[int]
-    time_closest_to_ball: float
-    time_farthest_from_ball: float
+    time_closest_to_ball: Optional[float]
+    time_farthest_from_ball: Optional[float]
     percent_defensive_third: float
     percent_offensive_third: float
     percent_neutral_third: float
@@ -61,10 +61,10 @@ class Positioning(BaseModel):
     percent_offensive_half: float
     percent_behind_ball: float
     percent_infront_ball: float
-    percent_most_back: float
-    percent_most_forward: float
-    percent_closest_to_ball: float
-    percent_farthest_from_ball: float
+    percent_most_back: Optional[float]
+    percent_most_forward: Optional[float]
+    percent_closest_to_ball: Optional[float]
+    percent_farthest_from_ball: Optional[float]
 
 class Movement(BaseModel):
     avg_speed: float
