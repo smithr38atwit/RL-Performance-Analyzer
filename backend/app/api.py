@@ -88,6 +88,9 @@ def get_offensive_score(replay: DetailedReplay, player_name: str):
     b_players = bteam.players
     o_players = oteam.players
 
+    player_goals = 0.0
+    all_goals = []
+
     player_sp = 0.0
     all_SP = []
 
@@ -116,6 +119,7 @@ def get_offensive_score(replay: DetailedReplay, player_name: str):
             player_stolen = player.stats.boost.amount_stolen
             player_off_half = player.stats.positioning.time_offensive_half
             player_pos = player.stats.positioning.time_closest_to_ball
+            player_goals = player.stats.core.goals
         else:
             all_SP.append(player.stats.core.shooting_percentage)
             all_shots.append(player.stats.core.shots)
@@ -123,6 +127,7 @@ def get_offensive_score(replay: DetailedReplay, player_name: str):
             all_stolen.append(player.stats.boost.amount_stolen)
             all_off_half.append(player.stats.positioning.time_offensive_half)
             all_pos.append(player.stats.positioning.time_closest_to_ball)
+            all_goals.append(player.stats.core.goals)
 
     for player in o_players:
         if player.id.platform == None: continue
@@ -133,6 +138,7 @@ def get_offensive_score(replay: DetailedReplay, player_name: str):
             player_stolen = player.stats.boost.amount_stolen
             player_off_half = player.stats.positioning.time_offensive_half
             player_pos = player.stats.positioning.time_closest_to_ball
+            player_goals = player.stats.core.goals
         else:
             all_SP.append(player.stats.core.shooting_percentage)
             all_shots.append(player.stats.core.shots)
@@ -140,8 +146,9 @@ def get_offensive_score(replay: DetailedReplay, player_name: str):
             all_stolen.append(player.stats.boost.amount_stolen)
             all_off_half.append(player.stats.positioning.time_offensive_half)
             all_pos.append(player.stats.positioning.time_closest_to_ball)
+            all_goals.append(player.stats.core.goals)
 
-    score = (0.20)*(percent_bw(player_sp, all_SP, True)) + (0.15)*(percent_bw(player_assists, all_assists, True)) + (0.15)*(percent_bw(player_stolen, all_stolen, True)) + (0.20)*(percent_bw(player_shots, all_shots, True)) + (0.20)*(percent_bw(player_pos, all_pos, True)) + (0.10)*(percent_bw(player_off_half, all_off_half, True))
+    score = (0.25)*(percent_bw(player_goals, all_goals, True)) + (0.15)*(percent_bw(player_sp, all_SP, True)) + (0.10)*(percent_bw(player_assists, all_assists, True)) + (0.10)*(percent_bw(player_stolen, all_stolen, True)) + (0.15)*(percent_bw(player_shots, all_shots, True)) + (0.15)*(percent_bw(player_pos, all_pos, True)) + (0.10)*(percent_bw(player_off_half, all_off_half, True))
     return score
 
 def get_defensive_score(replay: DetailedReplay, player_name: str):
