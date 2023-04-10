@@ -212,33 +212,20 @@ def percent_bw(u_val: float, all_val: list[float], greater: bool):
           f'Min: {min1}, Max: {max1}, Avg: {avg}')
 
     score = 0.0
-    if (greater):
-        if (u_val == max1):
-            score = 100.0
-        elif (u_val == min1):
-            score = 0.0
-        elif(u_val != max1 and u_val > avg):
-            p = ((max1 - u_val) / ((max1-avg)*2))
-            score = (p*100)+50.0
-        elif(u_val != min1 and u_val < avg):
-            p = (avg - u_val) / ((avg - min1)*2)
-            score = p*100
-        elif (avg == 0.0 or u_val == avg):
-            score = 50.0
-        print(f'Score: {score}\n')
-        return score
-    else:
-        if (u_val == min1):
-            score = 100.0
-        elif (u_val == max1):
-            score = 0.0
-        elif(u_val != min1 and u_val < avg):
-            p = ((avg - u_val) / ((avg - min1)*2))
-            score = (p*100)+50.0
-        elif(u_val != max1 and u_val > avg):
-            p = ((max1 - u_val) / ((max1 - avg)*2))
-            score = 50 - (p*100)
-        elif (avg == 0.0 or u_val == avg):
-            score = 50.0
-        print(f'Score: {score}\n')
-        return score
+    if (avg == 0.0 or u_val == avg):
+        score = 50.0
+    elif (u_val >= max1):
+        score = 100.0
+    elif (u_val <= min1):
+        score = 0.0
+    elif (u_val > avg):
+        p = (u_val - avg) / (max1 - avg)
+        score = 50.0 + (50 * p)
+    elif (u_val < avg):
+        p = (u_val - min1) / (avg - min1)
+        score = p * 50.0
+
+    if not greater: score = 100 - score
+    print(f'Score: {score}\n')
+    return score
+   
