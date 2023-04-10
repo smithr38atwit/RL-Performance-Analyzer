@@ -5,12 +5,12 @@ import { PlayerStats } from "../scripts/model";
 
 function StatsDial(percentage: number) {
     let r = 0, g = 0, b = 0;
-    //if score is above 80, graph is green
-    if (percentage >= 80) {
+    //if score is above 70, graph is green
+    if (percentage >= 70) {
         g = 255;
     }
-    //if score is between 80 and 60, graph is yellow
-    else if (percentage < 80 && percentage >= 60) {
+    //if score is between 70 and 40, graph is yellow
+    else if (percentage < 70 && percentage >= 40) {
         r = 255;
         g = 255;
     }
