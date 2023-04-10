@@ -35,6 +35,7 @@ async def read_root():
     else:
         return True
 
+
 @app.get('/get_recent_replays/{player_name}') # Check if replays exists for a given player. Returns true if replay is found; otherwise, return false
 async def get_recent_replays(player_name: str):
     headers = {'Authorization': os.getenv('TOKEN')}
@@ -50,6 +51,11 @@ async def get_recent_replays(player_name: str):
         return False
     
     replay_id = replays.list[0].id
+
+    #testing:
+    replay_id = 'e693f6b8-8734-417a-a70a-80704d9d38d3'
+    # player_name = 'EmpereurTrou78'
+
     r = requests.get(f'{bc_url}replays/{replay_id}', headers=headers) # Get specific replay
     if (r.status_code != 200):
         return False
@@ -58,26 +64,22 @@ async def get_recent_replays(player_name: str):
     replay = DetailedReplay(**data)
 
     # testing
+    # print('Replay ID: ' + str(replay.id))
     if player_name == 'a': return {'offense': 70, 'defense': 90, 'overall': 80}
     if player_name == 'b': return {'offense': 40, 'defense': 60, 'overall': 50}
     if player_name == 'c': return {'offense': 100, 'defense': 20, 'overall': 60}
 
-    return calculate_scores(replay, player_name)
-
-def calculate_scores(data: DetailedReplay, user: str):
-    
-    offensive = int(get_offensive_score(data, user))
-    defensive = int(get_defensive_score(data, user))
-    overall = ((offensive + defensive)/2) * 1.10
+    # return calculate_scores(replay, player_name)
+    print('\n--- Offensive Scores ---\n')
+    offensive = int(get_offensive_score(replay, player_name))
+    print('--- Defensive Scores ---\n')
+    defensive = int(get_defensive_score(replay, player_name))
+    overall = ((offensive + defensive)/2) #* 1.10
     
     stats = {'offense': offensive, 'defense': defensive, 'overall': overall}
 
-    # TODO: put stat calculations here
-    
-
     stats = Stats(**stats)
     return stats
-
 
 def get_offensive_score(replay: DetailedReplay, player_name: str):
     bteam = replay.blue
@@ -105,35 +107,39 @@ def get_offensive_score(replay: DetailedReplay, player_name: str):
     all_pos = []
 
 
-    for i in range(len(b_players)):
-        if (b_players[i].name == player_name):
-            player_sp = b_players[i].stats.core.shooting_percentage
-            player_shots = b_players[i].stats.core.shots
-            player_assists = b_players[i].stats.core.assists
-            player_stolen = b_players[i].stats.boost.amount_stolen
-            player_off_half = b_players[i].stats.positioning.time_offensive_half
-            player_pos = b_players[i].stats.positioning.time_closest_to_ball
-        all_SP.append(b_players[i].stats.core.shooting_percentage)
-        all_shots.append(b_players[i].stats.core.shots)
-        all_assists.append(b_players[i].stats.core.assists)
-        all_stolen.append(b_players[i].stats.boost.amount_stolen)
-        all_off_half.append(b_players[i].stats.positioning.time_offensive_half)
-        all_pos.append(b_players[i].stats.positioning.time_closest_to_ball)
+    for player in b_players:
+        if player.id.platform == None: continue
+        if (player.name == player_name):
+            player_sp = player.stats.core.shooting_percentage
+            player_shots = player.stats.core.shots
+            player_assists = player.stats.core.assists
+            player_stolen = player.stats.boost.amount_stolen
+            player_off_half = player.stats.positioning.time_offensive_half
+            player_pos = player.stats.positioning.time_closest_to_ball
+        else:
+            all_SP.append(player.stats.core.shooting_percentage)
+            all_shots.append(player.stats.core.shots)
+            all_assists.append(player.stats.core.assists)
+            all_stolen.append(player.stats.boost.amount_stolen)
+            all_off_half.append(player.stats.positioning.time_offensive_half)
+            all_pos.append(player.stats.positioning.time_closest_to_ball)
 
-    for i in range(len(o_players)):
-        if (o_players[i].name == player_name):
-            player_sp = o_players[i].stats.core.shooting_percentage
-            player_shots = o_players[i].stats.core.shots
-            player_assists = o_players[i].stats.core.assists
-            player_stolen = o_players[i].stats.boost.amount_stolen
-            player_off_half = o_players[i].stats.positioning.time_offensive_half
-            player_pos = o_players[i].stats.positioning.time_closest_to_ball
-        all_SP.append(o_players[i].stats.core.shooting_percentage)
-        all_shots.append(o_players[i].stats.core.shots)
-        all_assists.append(o_players[i].stats.core.assists)
-        all_stolen.append(o_players[i].stats.boost.amount_stolen)
-        all_off_half.append(o_players[i].stats.positioning.time_offensive_half)
-        all_pos.append(o_players[i].stats.positioning.time_closest_to_ball)
+    for player in o_players:
+        if player.id.platform == None: continue
+        if (player.name == player_name):
+            player_sp = player.stats.core.shooting_percentage
+            player_shots = player.stats.core.shots
+            player_assists = player.stats.core.assists
+            player_stolen = player.stats.boost.amount_stolen
+            player_off_half = player.stats.positioning.time_offensive_half
+            player_pos = player.stats.positioning.time_closest_to_ball
+        else:
+            all_SP.append(player.stats.core.shooting_percentage)
+            all_shots.append(player.stats.core.shots)
+            all_assists.append(player.stats.core.assists)
+            all_stolen.append(player.stats.boost.amount_stolen)
+            all_off_half.append(player.stats.positioning.time_offensive_half)
+            all_pos.append(player.stats.positioning.time_closest_to_ball)
 
     score = (0.20)*(percent_bw(player_sp, all_SP, True)) + (0.15)*(percent_bw(player_assists, all_assists, True)) + (0.15)*(percent_bw(player_stolen, all_stolen, True)) + (0.20)*(percent_bw(player_shots, all_shots, True)) + (0.20)*(percent_bw(player_pos, all_pos, True)) + (0.10)*(percent_bw(player_off_half, all_off_half, True))
     return score
@@ -161,69 +167,78 @@ def get_defensive_score(replay: DetailedReplay, player_name: str):
     all_bpm = []
 
 
-    for i in range(len(b_players)):
-        if (b_players[i].name == player_name):
-            player_spa = (b_players[i].stats.core.goals_against / b_players[i].stats.core.shots_against)
-            player_def_half = b_players[i].stats.positioning.time_offensive_half
-            player_saves = b_players[i].stats.core.saves
-            player_neutral_pos = b_players[i].stats.positioning.time_neutral_third
-            player_bpm = b_players[i].stats.boost.bpm
-        all_SPA.append((b_players[i].stats.core.goals_against / b_players[i].stats.core.shots_against))
-        all_def_half.append(b_players[i].stats.positioning.time_defensive_half)
-        all_saves.append(b_players[i].stats.core.saves)
-        all_neutral_pos.append(b_players[i].stats.positioning.time_neutral_third)
-        all_bpm.append(b_players[i].stats.boost.bpm)
+    for player in b_players:
+        if player.id.platform == None: continue
+        if (player.name == player_name):
+            player_spa = (player.stats.core.goals_against / player.stats.core.shots_against)
+            player_def_half = player.stats.positioning.time_offensive_half
+            player_saves = player.stats.core.saves
+            player_neutral_pos = player.stats.positioning.time_neutral_third
+            player_bpm = player.stats.boost.bpm
+        else:
+            all_SPA.append((player.stats.core.goals_against / player.stats.core.shots_against))
+            all_def_half.append(player.stats.positioning.time_defensive_half)
+            all_saves.append(player.stats.core.saves)
+            all_neutral_pos.append(player.stats.positioning.time_neutral_third)
+            all_bpm.append(player.stats.boost.bpm)
 
-    for i in range(len(o_players)):
-        if (o_players[i].name == player_name):
-            player_spa = (o_players[i].stats.core.goals_against / o_players[i].stats.core.shots_against)
-            player_def_half = o_players[i].stats.positioning.time_defensive_half
-            player_saves = o_players[i].stats.core.saves
-            player_neutral_pos = o_players[i].stats.positioning.time_neutral_third
-            player_bpm = o_players[i].stats.boost.bpm
-        all_SPA.append((o_players[i].stats.core.goals_against / o_players[i].stats.core.shots_against))
-        all_def_half.append(o_players[i].stats.positioning.time_defensive_half)
-        all_saves.append(o_players[i].stats.core.saves)
-        all_neutral_pos.append(o_players[i].stats.positioning.time_neutral_third)
-        all_bpm.append(o_players[i].stats.boost.bpm)
+    for player in o_players:
+        if player.id.platform == None: continue
+        if (player.name == player_name):
+            player_spa = (player.stats.core.goals_against / player.stats.core.shots_against)
+            player_def_half = player.stats.positioning.time_defensive_half
+            player_saves = player.stats.core.saves
+            player_neutral_pos = player.stats.positioning.time_neutral_third
+            player_bpm = player.stats.boost.bpm
+        else:
+            all_SPA.append((player.stats.core.goals_against / player.stats.core.shots_against))
+            all_def_half.append(player.stats.positioning.time_defensive_half)
+            all_saves.append(player.stats.core.saves)
+            all_neutral_pos.append(player.stats.positioning.time_neutral_third)
+            all_bpm.append(player.stats.boost.bpm)
 
     score = ((0.30)*percent_bw(player_spa, all_SPA, False)) + ((0.30)*percent_bw(player_saves, all_saves, True)) + ((0.15)*percent_bw(player_def_half, all_def_half, True)) + ((0.15)*percent_bw(player_neutral_pos, all_neutral_pos, True)) + ((0.10)*percent_bw(player_bpm, all_bpm, True))
     return score
 
 
 def percent_bw(u_val: float, all_val: list[float], greater: bool):
-
     avg = sum(all_val) / len(all_val)
     min1 = min(all_val)
     max1 = max(all_val)
 
+    #testing
+    print(f'Player: {u_val}\n' +
+          f'All: {all_val}\n' +
+          f'Min: {min1}, Max: {max1}, Avg: {avg}')
+
+    score = 0.0
     if (greater):
         if (u_val == max1):
-            return 100.0
+            score = 100.0
         elif (u_val == min1):
-            return 0.0
+            score = 0.0
         elif(u_val != max1 and u_val > avg):
             p = ((max1 - u_val) / ((max1-avg)*2))
-            return (p*100)+50.0
+            score = (p*100)+50.0
         elif(u_val != min1 and u_val < avg):
             p = (avg - u_val) / ((avg - min1)*2)
-            return p*100
+            score = p*100
         elif (avg == 0.0 or u_val == avg):
-            return 50.0
+            score = 50.0
+        print(f'Score: {score}\n')
+        return score
     else:
         if (u_val == min1):
-            return 100.0
+            score = 100.0
         elif (u_val == max1):
-            return 0.0
+            score = 0.0
         elif(u_val != min1 and u_val < avg):
             p = ((avg - u_val) / ((avg - min1)*2))
-            return (p*100)+50.0
+            score = (p*100)+50.0
         elif(u_val != max1 and u_val > avg):
             p = ((max1 - u_val) / ((max1 - avg)*2))
-            return 50 - (p*100)
+            score = 50 - (p*100)
         elif (avg == 0.0 or u_val == avg):
-            return 50.0
-
-
-
-
+            score = 50.0
+        print(f'Score: {score}\n')
+        return score

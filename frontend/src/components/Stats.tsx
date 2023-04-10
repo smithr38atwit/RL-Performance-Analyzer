@@ -68,7 +68,6 @@ function StatsDial(percentage: number) {
 }
 
 function Stats({ stats, name }: { stats: { [name: string]: PlayerStats }, name: string }) {
-    console.log("Stats: ", stats)
     return (
         <section id="player-stats">
             <div id="main-scores" className="scores">
