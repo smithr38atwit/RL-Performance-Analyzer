@@ -53,7 +53,7 @@ async def get_recent_replays(player_name: str):
     replay_id = replays.list[0].id
 
     #testing:
-    replay_id = 'e693f6b8-8734-417a-a70a-80704d9d38d3'
+    # replay_id = 'e693f6b8-8734-417a-a70a-80704d9d38d3'
     # player_name = 'EmpereurTrou78'
 
     r = requests.get(f'{bc_url}replays/{replay_id}', headers=headers) # Get specific replay
