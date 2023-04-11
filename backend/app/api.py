@@ -65,9 +65,9 @@ async def get_recent_replays(player_name: str):
 
     # testing
     # print('Replay ID: ' + str(replay.id))
-    if player_name == 'a': return {'offense': 70, 'defense': 90, 'overall': 80}
-    if player_name == 'b': return {'offense': 40, 'defense': 60, 'overall': 50}
-    if player_name == 'c': return {'offense': 100, 'defense': 20, 'overall': 60}
+    # if player_name == 'a': return {'offense': 70, 'defense': 90, 'overall': 80}
+    # if player_name == 'b': return {'offense': 40, 'defense': 60, 'overall': 50}
+    # if player_name == 'c': return {'offense': 100, 'defense': 20, 'overall': 60}
 
     # return calculate_scores(replay, player_name)
     print('\n--- Offensive Scores ---\n')
