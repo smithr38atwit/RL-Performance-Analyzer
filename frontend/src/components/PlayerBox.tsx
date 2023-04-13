@@ -85,7 +85,7 @@ function PlayerBox(
         <button disabled={waiting} className="material-icons-outlined" onClick={addPlayer}>add_circle_outline</button>
       </div>
 
-      <select id="selectPlayerDropdown" value={selectedPlayer} onChange={e => setSelectedPlayer(e.target.value)} >
+      <select className="playerDropdown" id="selectPlayerDropdown" value={selectedPlayer} onChange={e => setSelectedPlayer(e.target.value)} >
         <option value="" hidden>Select Player</option>
         {players.map(player => {
           return <option key={player.name} value={player.name}>{player.name}</option>
