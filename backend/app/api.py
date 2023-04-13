@@ -4,7 +4,7 @@ from uuid import UUID
 import requests
 import os
 from dotenv import load_dotenv
-from app.model import FilteredReplays, DetailedReplay, Stats
+from app.model import FilteredReplays, DetailedReplay, Stats, StatTrio, SubStats
 
 app = FastAPI()
 bc_url = "https://ballchasing.com/api/"
@@ -236,3 +236,364 @@ def percent_bw(u_val: float, all_val: list[float], greater: bool):
     print(f'Score: {score}\n')
     return score
    
+def offLeaders(replay: DetailedReplay):
+    bteam = replay.blue
+    oteam = replay.orange
+
+    b_players = bteam.players
+    o_players = oteam.players
+
+    all_goals = []
+
+    all_SP = []
+
+    all_shots = []
+
+    all_assists = []
+
+    all_stolen = []
+
+    all_off_half = []
+
+    all_pos = []
+
+
+    for player in b_players:
+        if player.id.platform == None: continue
+        all_SP.append(player.stats.core.shooting_percentage)
+        all_shots.append(player.stats.core.shots)
+        all_assists.append(player.stats.core.assists)
+        all_stolen.append(player.stats.boost.amount_stolen)
+        all_off_half.append(player.stats.positioning.time_offensive_half)
+        all_pos.append(player.stats.positioning.time_closest_to_ball)
+        all_goals.append(player.stats.core.goals)
+
+    for player in o_players:
+        if player.id.platform == None: continue
+        all_SP.append(player.stats.core.shooting_percentage)
+        all_shots.append(player.stats.core.shots)
+        all_assists.append(player.stats.core.assists)
+        all_stolen.append(player.stats.boost.amount_stolen)
+        all_off_half.append(player.stats.positioning.time_offensive_half)
+        all_pos.append(player.stats.positioning.time_closest_to_ball)
+        all_goals.append(player.stats.core.goals)
+
+    max_goals = max(all_goals)
+
+    for player in b_players:
+        if player.id.platform == None: continue
+        if (player.stats.core.goals == max_goals):
+            goal_leader = player.name
+
+    for player in o_players:
+        if player.id.platform == None: continue
+        if (player.stats.core.goals == max_goals):
+            goal_leader = player.name
+
+    max_SP = max(all_SP)
+
+    for player in b_players:
+        if player.id.platform == None: continue
+        if (player.stats.core.shooting_percentage == max_SP):
+            sp_leader = player.name
+
+    for player in o_players:
+        if player.id.platform == None: continue
+        if (player.stats.core.shooting_percentage == max_SP):
+            sp_leader = player.name
+
+    max_shots = max(all_shots)
+
+    for player in b_players:
+        if player.id.platform == None: continue
+        if (player.stats.core.shots == max_shots):
+            shots_leader = player.name
+
+    for player in o_players:
+        if player.id.platform == None: continue
+        if (player.stats.core.shots == max_shots):
+            shots_leader = player.name
+
+    max_assists = max(all_assists)
+
+    for player in b_players:
+        if player.id.platform == None: continue
+        if (player.stats.core.assists == max_assists):
+            assists_leader = player.name
+
+    for player in o_players:
+        if player.id.platform == None: continue
+        if (player.stats.core.assists == max_assists):
+            assists_leader = player.name
+
+    max_stolen = max(all_stolen)
+
+    for player in b_players:
+        if player.id.platform == None: continue
+        if (player.stats.boost.amount_stolen == max_stolen):
+            stolen_leader = player.name
+
+    for player in o_players:
+        if player.id.platform == None: continue
+        if (player.stats.boost.amount_stolen == max_stolen):
+            stolen_leader = player.name
+
+    max_off_half = max(all_off_half)
+
+    for player in b_players:
+        if player.id.platform == None: continue
+        if (player.stats.positioning.time_offensive_half == max_off_half):
+            off_half_leader = player.name
+
+    for player in o_players:
+        if player.id.platform == None: continue
+    if (player.stats.positioning.time_offensive_half == max_off_half):
+            off_half_leader = player.name
+
+    max_pos = max(all_pos)
+
+    for player in b_players:
+        if player.id.platform == None: continue
+        if (player.stats.positioning.time_closest_to_ball == max_pos):
+            pos_leader = player.name
+
+    for player in o_players:
+        if player.id.platform == None: continue
+        if (player.stats.positioning.time_closest_to_ball == max_pos):
+            pos_leader = player.name
+
+    off_stats = {'Goals: ': goal_leader, 'Goal%': sp_leader, 'Shots': shots_leader, 'Assists': assists_leader, 'Boost Stolen': stolen_leader, 'Offensive Half Time': off_half_leader, 'Possession Time': pos_leader}
+    return off_stats
+
+def defLeaders(replay: DetailedReplay):
+    bteam = replay.blue
+    oteam = replay.orange
+
+    b_players = bteam.players
+    o_players = oteam.players
+
+    all_SPA = []
+
+    all_def_half = []
+
+    all_saves = []
+
+    all_neutral_pos = []
+
+    all_bpm = []
+
+
+    for player in b_players:
+        if player.id.platform == None: continue
+        all_SPA.append((player.stats.core.goals_against / player.stats.core.shots_against))
+        all_def_half.append(player.stats.positioning.time_defensive_half)
+        all_saves.append(player.stats.core.saves)
+        all_neutral_pos.append(player.stats.positioning.time_neutral_third)
+        all_bpm.append(player.stats.boost.bpm)
+
+    for player in o_players:
+        if player.id.platform == None: continue
+        all_SPA.append((player.stats.core.goals_against / player.stats.core.shots_against))
+        all_def_half.append(player.stats.positioning.time_defensive_half)
+        all_saves.append(player.stats.core.saves)
+        all_neutral_pos.append(player.stats.positioning.time_neutral_third)
+        all_bpm.append(player.stats.boost.bpm)
+
+    min_SPA = min(all_SPA)
+
+    for player in b_players:
+        if player.id.platform == None: continue
+        if ((player.stats.core.goals_against / player.stats.core.shots_against) == min_SPA):
+            spa_leader = player.name
+
+    for player in o_players:
+        if player.id.platform == None: continue
+        if ((player.stats.core.goals_against / player.stats.core.shots_against) == min_SPA):
+            spa_leader = player.name
+
+    max_def_half = max(all_def_half)
+
+    for player in b_players:
+        if player.id.platform == None: continue
+        if (player.stats.positioning.time_defensive_half == max_def_half):
+            def_half_leader = player.name
+
+    for player in o_players:
+        if player.id.platform == None: continue
+        if (player.stats.positioning.time_defensive_half == max_def_half):
+            def_half_leader = player.name
+
+    max_saves = max(all_saves)
+
+    for player in b_players:
+        if player.id.platform == None: continue
+        if (player.stats.core.saves == max_saves):
+            saves_leader = player.name
+
+    for player in o_players:
+        if player.id.platform == None: continue
+        if (player.stats.core.saves == max_saves):
+            saves_leader = player.name
+
+    max_neutral_pos = max(all_neutral_pos)
+
+    for player in b_players:
+        if player.id.platform == None: continue
+        if (player.stats.positioning.time_neutral_third == max_neutral_pos):
+            neutral_pos_leader = player.name
+
+    for player in o_players:
+        if player.id.platform == None: continue
+        if (player.stats.positioning.time_neutral_third == max_neutral_pos):
+            neutral_pos_leader = player.name
+
+    max_bpm = max(all_bpm)
+
+    for player in b_players:
+        if player.id.platform == None: continue
+        if (player.stats.boost.bpm == max_bpm):
+            bpm_leader = player.name
+
+    for player in o_players:
+        if player.id.platform == None: continue
+        if (player.stats.boost.bpm == max_bpm):
+            bpm_leader = player.name
+
+
+
+    def_stats = {'Goals Against%: ': spa_leader, 'Defensive Half Time': def_half_leader, 'Saves': saves_leader, 'Neutral Third Time': neutral_pos_leader, 'Boost Per Minute': bpm_leader}
+    return def_stats
+
+
+def game_stats(replay: DetailedReplay, player_name: str):
+    bteam = replay.blue
+    oteam = replay.orange
+
+    b_players = bteam.players
+    o_players = oteam.players
+
+    all_SPA = []
+
+    all_def_half = []
+
+    all_saves = []
+
+    all_neutral_pos = []
+
+    all_bpm = []
+
+    all_goals = []
+
+    all_SP = []
+
+    all_shots = []
+
+    all_assists = []
+
+    all_stolen = []
+
+    all_off_half = []
+
+    all_pos = []
+
+
+    for player in b_players:
+        if player.id.platform == None: continue
+        all_SPA.append((player.stats.core.goals_against / player.stats.core.shots_against))
+        all_def_half.append(player.stats.positioning.time_defensive_half)
+        all_saves.append(player.stats.core.saves)
+        all_neutral_pos.append(player.stats.positioning.time_neutral_third)
+        all_bpm.append(player.stats.boost.bpm)
+        all_SP.append(player.stats.core.shooting_percentage)
+        all_shots.append(player.stats.core.shots)
+        all_assists.append(player.stats.core.assists)
+        all_stolen.append(player.stats.boost.amount_stolen)
+        all_off_half.append(player.stats.positioning.time_offensive_half)
+        all_pos.append(player.stats.positioning.time_closest_to_ball)
+        all_goals.append(player.stats.core.goals)
+
+        if (player.name == player_name):
+            player_SPA = ((player.stats.core.goals_against / player.stats.core.shots_against))
+            player_def_half = player.stats.positioning.time_defensive_half
+            player_saves = player.stats.core.saves
+            player_neutral_pos = player.stats.positioning.time_neutral_third
+            player_bpm = player.stats.boost.bpm
+            player_SP = player.stats.core.shooting_percentage
+            player_shots = player.stats.core.shots
+            player_assists = player.stats.core.assists
+            player_stolen = player.stats.boost.amount_stolen
+            player_off_half = player.stats.positioning.time_offensive_half
+            player_pos = player.stats.positioning.time_closest_to_ball
+            player_goals = player.stats.core.goals
+
+    for player in o_players:
+        if player.id.platform == None: continue
+        all_SPA.append((player.stats.core.goals_against / player.stats.core.shots_against))
+        all_def_half.append(player.stats.positioning.time_defensive_half)
+        all_saves.append(player.stats.core.saves)
+        all_neutral_pos.append(player.stats.positioning.time_neutral_third)
+        all_bpm.append(player.stats.boost.bpm)
+        all_SP.append(player.stats.core.shooting_percentage)
+        all_shots.append(player.stats.core.shots)
+        all_assists.append(player.stats.core.assists)
+        all_stolen.append(player.stats.boost.amount_stolen)
+        all_off_half.append(player.stats.positioning.time_offensive_half)
+        all_pos.append(player.stats.positioning.time_closest_to_ball)
+        all_goals.append(player.stats.core.goals)
+
+        if (player.name == player_name):
+            player_SPA = ((player.stats.core.goals_against / player.stats.core.shots_against))
+            player_def_half = player.stats.positioning.time_defensive_half
+            player_saves = player.stats.core.saves
+            player_neutral_pos = player.stats.positioning.time_neutral_third
+            player_bpm = player.stats.boost.bpm
+            player_SP = player.stats.core.shooting_percentage
+            player_shots = player.stats.core.shots
+            player_assists = player.stats.core.assists
+            player_stolen = player.stats.boost.amount_stolen
+            player_off_half = player.stats.positioning.time_offensive_half
+            player_pos = player.stats.positioning.time_closest_to_ball
+            player_goals = player.stats.core.goals
+
+    max_goals = max(all_goals)
+    min_goals = min(all_goals)
+
+    max_SP = max(all_SP)
+    min_SP = min(all_SP)
+
+    max_shots = max(all_shots)
+    min_shots = min(all_shots)
+
+    max_assists = max(all_assists)
+    min_assists = min(all_assists)
+
+    max_stolen = max(all_stolen)
+    min_stolen = min(all_stolen)
+
+    max_off_half = max(all_off_half)
+    min_off_half = min(all_off_half)
+
+    max_pos = max(all_pos)
+    min_pos = min(all_pos)
+
+
+    max_SPA = max(all_SPA)
+    min_SPA = min(all_SPA)
+
+    max_def_half = max(all_def_half)
+    min_def_half = min(all_def_half)
+
+
+    max_saves = max(all_saves)
+    min_saves = min(all_saves)
+
+
+    max_neutral_pos = max(all_neutral_pos)
+    min_neutral_pos = min(all_neutral_pos)
+
+
+    max_bpm = max(all_bpm)
+    min_bpm = min(all_bpm)
+
+    
+
