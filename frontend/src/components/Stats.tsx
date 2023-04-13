@@ -67,6 +67,16 @@ function StatsDial(percentage: number) {
     );
 }
 
+function SubScore(){
+    return(
+        <div id='subscores'>
+            <div id='min'> 10 </div>
+            <div id='you'> 75 </div>
+            <div id='max'> 99 </div>
+        </div>
+    )
+}
+
 function Stats({ stats, name }: { stats: { [name: string]: PlayerStats }, name: string }) {
     return (
         <section id="player-stats">
@@ -82,6 +92,20 @@ function Stats({ stats, name }: { stats: { [name: string]: PlayerStats }, name: 
                 <div>
                     {StatsDial(stats[name].overall)}
                     <p className="score-label">Overall</p>
+                </div>
+            </div>
+
+            <div id='scoreBreakdown'>
+                <p>Score Breakdown</p>
+                <p>Offensive </p>
+                <div id='breakdown'> 
+                    <SubScore></SubScore>
+                    <SubScore></SubScore>
+                </div>
+                <p>defensive</p>
+                <div id='breakdown'> 
+                    <SubScore></SubScore>
+                    <SubScore></SubScore>
                 </div>
             </div>
         </section>

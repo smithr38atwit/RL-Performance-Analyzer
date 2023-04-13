@@ -50,3 +50,63 @@ nav a {
     font-size: 30px;
     font-weight: bolder;
 }
+
+/* subscores */
+
+#breakdown {
+    display: flex;
+}
+
+#subscores {
+    display: flex;
+    margin-left: 2%;
+}
+
+#max,
+#min,
+#you {
+    margin-right: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 25%;
+    -webkit-border-radius: 25%;
+    -moz-border-radius: 25%;
+    -ms-border-radius: 25%;
+    -o-border-radius: 25%;
+}
+
+#min {
+    background-color: rgb(195, 71, 71);
+    /* Set the background color of Box 1 */
+    width: 70px;
+    /* Distribute the available space equally among the three boxes */
+    height: 80px;
+    /* Set the height of the boxes as needed */
+    margin-top: 10px;
+}
+
+#max {
+    background-color: rgb(72, 235, 89);
+    /* Set the background color of Box 2 */
+    width: 70px;
+    /* Distribute the available space equally among the three boxes */
+    height: 80px;
+    /* Set the height of the boxes as needed */
+    margin-top: 10px;
+}
+
+#you {
+    background-color: blue;
+    /* Set the background color of Box 3 */
+    width: 100px;
+    /* Distribute the available space equally among the three boxes */
+    height: 100px;
+    /* Set the height of the boxes as needed */
+}
+
+#subscores::after {
+    content: "";
+}
+
+/* Create an empty pseudo-element to clear the flexbox */
