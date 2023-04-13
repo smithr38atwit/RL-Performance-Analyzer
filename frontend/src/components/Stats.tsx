@@ -70,6 +70,17 @@ function StatsDial(percentage: number) {
 function Stats({ stats, name }: { stats: { [name: string]: PlayerStats }, name: string }) {
     return (
         <section id="player-stats">
+            <header id="stats-header">
+                <div>
+                    <span>Map Name</span>
+                    <span>W | 0-0</span>
+                </div>
+                <div>
+                    <span>4:59</span>
+                    <a>Replay Name</a>
+                    <span>Playlist Name</span>
+                </div>
+            </header>
             <div id="main-scores" className="scores">
                 <div >
                     {StatsDial(stats[name].offense)}

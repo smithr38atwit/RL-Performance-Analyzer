@@ -18,10 +18,6 @@ function PlayerBox(
     ping();
   }, []);
 
-  useEffect(() => {
-
-  }, [])
-
 
   async function ping() {
     const success: boolean = Boolean(await Api.getRoot());

@@ -7,19 +7,28 @@ main {
 }
 
 
-/* ------ Nav bar ------ */
+/* ------ Header ------ */
 
-main nav {
-    height: fit-content;
+header {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 36px;
 }
 
-nav a {
-    display: inline-block;
-    color: rgb(0, 0, 0);
-    text-decoration: none;
-    background-color: #4457d4;
-    padding: 0.5rem;
-    font-family: sans-serif;
+header div {
+    display: flex;
+    justify-content: left;
+    gap: 100px;
+}
+
+header div:first-child {
+    font-size: 36px;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+header div:last-child {
+    font-size: 24px;
 }
 
 

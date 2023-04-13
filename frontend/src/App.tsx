@@ -14,9 +14,6 @@ function App() {
     <>
       <PlayerBox setStats={setStats} setSelectedPlayer={setSelectedPlayer} selectedPlayer={selectedPlayer} />
       <main id='stats'>
-        <nav>
-          <a href="#player-stats">Player Statistics</a>
-        </nav>
         <Stats stats={stats} name={selectedPlayer} />
       </main>
     </>
