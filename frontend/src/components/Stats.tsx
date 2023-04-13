@@ -96,13 +96,13 @@ function Stats({ stats, name }: { stats: { [name: string]: PlayerStats }, name: 
             </div>
 
             <div id='scoreBreakdown'>
-                <p>Score Breakdown</p>
-                <p>Offensive </p>
+                <p id='scoreBreakdownLabel'>Score Breakdown</p>
+                <p id='breakdownHeaders'>   Offensive </p>
                 <div id='breakdown'> 
                     <SubScore></SubScore>
                     <SubScore></SubScore>
                 </div>
-                <p>defensive</p>
+                <p id='breakdownHeaders'>   Defensive</p>
                 <div id='breakdown'> 
                     <SubScore></SubScore>
                     <SubScore></SubScore>

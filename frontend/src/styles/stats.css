@@ -109,4 +109,14 @@ nav a {
     content: "";
 }
 
-/* Create an empty pseudo-element to clear the flexbox */
+#breakdownHeaders {
+    font-family: sans-serif;
+    font-size: 30px;
+    font-weight: bolder;
+}
+
+#scoreBreakdownLabel {
+    font-family: sans-serif;
+    font-size: 30px;
+    font-weight: bolder;
+}
