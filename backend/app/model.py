@@ -187,7 +187,20 @@ class DetailedReplay(BaseModel):
 
 # ------ Calculated Stats ------
 
+class StatTrio(BaseModel):
+    stat_name: str
+    minimum: float
+    player_val: float
+    maximum: float
+
+class SubStats(BaseModel):
+    off_vals: list[StatTrio]
+    def_vals: list[StatTrio]
+
 class Stats(BaseModel):
     offense: int
     defense: int
     overall: int
+    stat_vals: SubStats
+
+
