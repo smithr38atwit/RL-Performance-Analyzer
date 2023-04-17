@@ -56,12 +56,7 @@
     width: 9.5rem;
 
     display: flex;
-    justify-content: center;
     align-items: center;
-
-    font-family: sans-serif;
-    font-size: 28px;
-    color: white;
 }
 
 .player-container button {
@@ -73,9 +68,37 @@
     border: none;
 }
 
+.player-text {
+    background-color: transparent;
+    height: 9.5rem;
+    width: 8.5rem;
+
+    display: block;
+
+    text-align: center;
+    font-family: sans-serif;
+    font-size: 28px;
+    color: black;
+
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    padding-left: 1rem;
+    padding-top: 3.5rem;
+}
+
 
 /* Warning icon if not connected to ballchasing */
 .bc-conn {
     float: right;
     visibility: hidden;
+}
+
+/* Warning if player has no replays */
+.error{
+    font-family: sans-serif;
+    font-size: 15px;
+    color: red;
+    visibility: hidden;
+
 }
