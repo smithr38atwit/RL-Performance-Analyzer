@@ -202,5 +202,4 @@ class Stats(BaseModel):
     defense: int
     overall: int
     stat_vals: SubStats
-
-
+    

@@ -53,7 +53,7 @@ async def get_recent_replays(player_name: str):
     replay_id = replays.list[0].id
 
     #testing:
-    replay_id = 'e693f6b8-8734-417a-a70a-80704d9d38d3'
+    # replay_id = 'e693f6b8-8734-417a-a70a-80704d9d38d3'
     # player_name = 'EmpereurTrou78'
 
     r = requests.get(f'{bc_url}replays/{replay_id}', headers=headers) # Get specific replay
@@ -65,9 +65,9 @@ async def get_recent_replays(player_name: str):
 
     # testing
     # print('Replay ID: ' + str(replay.id))
-    if player_name == 'a': return {'offense': 70, 'defense': 90, 'overall': 80}
-    if player_name == 'b': return {'offense': 40, 'defense': 60, 'overall': 50}
-    if player_name == 'c': return {'offense': 100, 'defense': 20, 'overall': 60}
+    # if player_name == 'a': return {'offense': 70, 'defense': 90, 'overall': 80}
+    # if player_name == 'b': return {'offense': 40, 'defense': 60, 'overall': 50}
+    # if player_name == 'c': return {'offense': 100, 'defense': 20, 'overall': 60}
 
     # return calculate_scores(replay, player_name)
     print('\n--- Offensive Scores ---\n')

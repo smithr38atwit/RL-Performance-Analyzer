@@ -7,7 +7,7 @@ import { PlayerStats } from './scripts/model';
 
 
 function App() {
-  const [stats, setStats] = useState<{ [name: string]: PlayerStats }>({ '': { 'offense': 0, 'defense': 0, 'overall': 0 } });
+  const [stats, setStats] = useState<{ [name: string]: PlayerStats }>({ '': { 'offense': 0, 'defense': 0, 'overall': 0, 'stat_vals': { 'off_vals': [], 'def_vals': [] } } });
   const [selectedPlayer, setSelectedPlayer] = useState('');
 
   return (
