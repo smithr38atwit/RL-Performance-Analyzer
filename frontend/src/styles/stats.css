@@ -27,7 +27,7 @@ nav a {
 
 #player-stats {
     width: 100%;
-    height: 800px;
+    height: fit-content;
     background-color: #4457d4;
     padding: 32px;
 }
