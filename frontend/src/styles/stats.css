@@ -63,7 +63,7 @@ nav a {
     display: flex;
     padding-left: 1%;
     margin-left: 2.5%;
-    background-color: rgb(201, 201, 201);
+    background-color: #e5e5e5;
     width: 250px;
     height: 150px;
     border-radius: 25%;
@@ -99,14 +99,14 @@ nav a {
 }
 
 #max {
-    background-color: rgb(72, 235, 89);
+    background-color: rgb(83, 248, 100);
     width: 70px;
     height: 80px;
     margin-top: 35px;
 }
 
 #you {
-    background-color: blue;
+    background-color: rgb(0, 123, 238);
     width: 100px;
     height: 100px;
     margin-top: 25px;
