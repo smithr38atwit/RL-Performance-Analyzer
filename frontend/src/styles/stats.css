@@ -151,14 +151,17 @@ nav a {
     font-size: 30px;
     font-weight: bolder;
     text-align: center;
-
-    height: 30%;
+    height: 50%;
     width: 25%;
     padding: 5px;
-    border-radius: 5%;
+    border-radius: 10px;
     border: 7px solid #e5e5e5;
     background-color: #e5e5e5;
     margin: auto;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
 }
 
 hr.rounded {
@@ -174,12 +177,13 @@ hr.roundedTop {
     height: 8px;
     width: 100%;
 }
+
 .titleContainer {
     display: flex;
     align-content: center;
     gap: 40px;
     padding-top: 20px;
-    
+
     justify-content: center;
     align-items: center;
 }
