@@ -78,7 +78,7 @@ function SubScore(statList: FVal[]){
                             <div id='breakdownscores'>
                                 <div id='min'> {stat.minimum} </div>
                                 <div id='you'> {stat.player_val} </div>
-                                <div id='max'> {stat.maximum} </div>  
+                                <div id='max'> {stat.maximum} </div>
                             </div>
                             <div id='breakdownscorelabels'>
                                 <p id="minlabel">Min.</p>
@@ -110,10 +110,13 @@ function Stats({ stats, name }: { stats: { [name: string]: PlayerStats }, name: 
             </div>
 
             <div id='scoreBreakdown'>
+                <hr className="roundedTop"></hr>
                 <p id='scoreBreakdownLabel'>Score Breakdown</p>
+                    <hr className="rounded"></hr>
                     <div id='breakdownlabel'> Offense
                         {SubScore(stats[name].stat_vals.off_vals)}
                     </div>
+                    <hr className="rounded"></hr>
                     <div id='breakdownlabel'> Defense
                         {SubScore(stats[name].stat_vals.def_vals)}
                     </div>
