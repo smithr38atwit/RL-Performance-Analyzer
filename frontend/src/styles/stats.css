@@ -15,6 +15,9 @@ header {
     margin-bottom: 36px;
 
     font-family: sans-serif;
+    background-color: #e5e5e5;
+    padding: 20px 10px;
+    border-radius: 8px;
 }
 
 header div {
