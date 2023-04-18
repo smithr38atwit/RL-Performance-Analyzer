@@ -123,7 +123,6 @@ function Stats({ stats, name }: { stats: { [name: string]: PlayerStats }, name: 
                     <hr className="rounded"></hr>
                 </div>
                 {SubScore(stats[name].stat_vals.def_vals)}
-
             </div>
         </section>
     );
