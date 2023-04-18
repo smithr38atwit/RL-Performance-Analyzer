@@ -157,9 +157,13 @@ class Player(BaseModel):
     steering_sensitivity: float
     stats: PlayerStats
 
+class TeamStats(BaseModel):
+    core: Core
+
 class Team(BaseModel):
     color: str
     players: list[Player]
+    stats: TeamStats
 
 class DetailedReplay(BaseModel):
     id: UUID
@@ -197,9 +201,22 @@ class SubStats(BaseModel):
     off_vals: list[StatTrio]
     def_vals: list[StatTrio]
 
+class Result(BaseModel):
+    player_team: int
+    opp_team: int
+
+class ReplayDetails(BaseModel):
+    map_name: str
+    result: Result
+    match_time: float
+    playlist: str
+    replay_name: str
+    replay_id: UUID
+
 class Stats(BaseModel):
     offense: int
     defense: int
     overall: int
+    replay_details: ReplayDetails
     stat_vals: SubStats
     

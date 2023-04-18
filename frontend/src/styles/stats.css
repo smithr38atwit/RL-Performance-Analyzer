@@ -13,24 +13,34 @@ header {
     display: flex;
     flex-direction: column;
     margin-bottom: 36px;
+
+    font-family: sans-serif;
 }
 
 header div {
     display: flex;
     justify-content: left;
-    gap: 100px;
 }
 
 header div:first-child {
     font-size: 36px;
     font-weight: 600;
     margin-bottom: 20px;
+    gap: 100px;
 }
 
 header div:last-child {
-    font-size: 24px;
+    font-size: 20px;
+    gap: 50px;
 }
 
+/* Replay link */
+header div:last-child a {
+    color: #df2d2d;
+}
+header div:last-child a:hover {
+    color: #fd5d5d;
+}
 
 /* ------ Individual Player Scores ------ */
 

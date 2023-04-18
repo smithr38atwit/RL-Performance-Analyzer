@@ -68,17 +68,28 @@ function StatsDial(percentage: number) {
 }
 
 function Stats({ stats, name }: { stats: { [name: string]: PlayerStats }, name: string }) {
+    const replayDetails = stats[name].replay_details;
+    let winloss = 'T';
+    if (replayDetails.result.player_team > replayDetails.result.opp_team) {
+        winloss = 'W';
+    } else if (replayDetails.result.player_team < replayDetails.result.opp_team) {
+        winloss = 'L';
+    }
+    let matchMin = Math.floor(replayDetails.match_time / 60);
+    let matchSec = replayDetails.match_time % 60;
+    const link = `https://ballchasing.com/replay/${replayDetails.replay_id}`;
+
     return (
         <section id="player-stats">
             <header id="stats-header">
                 <div>
-                    <span>Map Name</span>
-                    <span>W | 0-0</span>
+                    <span>{replayDetails.map_name}</span>
+                    <span>{winloss} | {replayDetails.result.player_team}-{replayDetails.result.opp_team}</span>
                 </div>
                 <div>
-                    <span>4:59</span>
-                    <a>Replay Name</a>
-                    <span>Playlist Name</span>
+                    <span>Duration: {matchMin}:{matchSec}</span>
+                    <span>Playlist: {replayDetails.playlist}</span>
+                    <span>Replay: <a href={link} target="_blank" rel="noopener noreferrer">{replayDetails.replay_name}</a></span>
                 </div>
             </header>
             <div id="main-scores" className="scores">

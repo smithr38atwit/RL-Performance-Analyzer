@@ -74,11 +74,20 @@ async def get_recent_replays(player_name: str):
     offensive = int(get_offensive_score(replay, player_name))
     print('--- Defensive Scores ---\n')
     defensive = int(get_defensive_score(replay, player_name))
-    overall = ((offensive + defensive)/2) #* 1.10
+    overall = ((offensive + defensive)/2)
 
+    result = {}
+    for player in replay.blue.players:
+        if player.name == player_name:
+            result['player_team'] = replay.blue.stats.core.goals
+            result['opp_team'] = replay.orange.stats.core.goals
+        else:
+            result['opp_team'] = replay.blue.stats.core.goals
+            result['player_team'] = replay.orange.stats.core.goals
+    replay_details = {'map_name': replay.map_code if replay.map_name == None else replay.map_name, 'result': result, 'match_time': replay.duration, 'playlist': replay.playlist_name, 'replay_name': replay.title, 'replay_id': replay.id}
     all_stats = game_stats(replay, player_name)
     
-    stats = {'offense': offensive, 'defense': defensive, 'overall': overall, 'stat_vals': all_stats}
+    stats = {'offense': offensive, 'defense': defensive, 'overall': overall, 'replay_details': replay_details, 'stat_vals': all_stats}
 
     stats = Stats(**stats)
     return stats
