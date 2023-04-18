@@ -110,16 +110,20 @@ function Stats({ stats, name }: { stats: { [name: string]: PlayerStats }, name: 
             </div>
 
             <div id='scoreBreakdown'>
-                <hr className="roundedTop"></hr>
-                <p id='scoreBreakdownLabel'>Score Breakdown</p>
+                <div id='scoreBreakdownLabel'>Score Breakdown</div>
+                <div className='titleContainer'>
                     <hr className="rounded"></hr>
-                    <div id='breakdownlabel'> Offense
-                        {SubScore(stats[name].stat_vals.off_vals)}
-                    </div>
+                    <div id='breakdownlabel'> Offense </div>
                     <hr className="rounded"></hr>
-                    <div id='breakdownlabel'> Defense
-                        {SubScore(stats[name].stat_vals.def_vals)}
-                    </div>
+                </div>
+                {SubScore(stats[name].stat_vals.off_vals)}
+                <div className='titleContainer'>
+                    <hr className="rounded"></hr>
+                    <div id='breakdownlabel'> Defense</div>
+                    <hr className="rounded"></hr>
+                </div>
+                {SubScore(stats[name].stat_vals.def_vals)}
+
             </div>
         </section>
     );
