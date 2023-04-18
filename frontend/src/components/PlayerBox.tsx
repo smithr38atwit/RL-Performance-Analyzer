@@ -27,6 +27,7 @@ function PlayerBox(
   }
 
   async function addPlayer() {
+    document.getElementById("error")!.style.visibility="hidden";
     setWaiting(true);
     const name = playerNameRef.current!.value;
     if (name === '' || players.length === 3 || players.filter(player => player.name === name).length > 0) {
@@ -41,17 +42,19 @@ function PlayerBox(
         newStats[name] = stats;
         return newStats;
       });
+      setPlayers(prevPlayers => {
+        const newPlayers: PlayerModel[] = [...prevPlayers, { name: name, hasReplays: hasReplays }];
+        return newPlayers;
+      });
+  
+      if (hasReplays) setSelectedPlayer(name);
+      document.getElementById(`placeholder${players.length}`)!.style.display = "none";
+      
     }
-
-    setPlayers(prevPlayers => {
-      const newPlayers: PlayerModel[] = [...prevPlayers, { name: name, hasReplays: hasReplays }];
-      return newPlayers;
-    });
-
-    if (hasReplays) setSelectedPlayer(name);
-
+    else {
+      document.getElementById("error")!.style.visibility="visible";
+    }
     playerNameRef.current!.value = '';
-    document.getElementById(`placeholder${players.length}`)!.style.display = "none";
     setWaiting(false)
   }
 
@@ -80,7 +83,7 @@ function PlayerBox(
         <input disabled={waiting} ref={playerNameRef} onKeyDown={handleKeyPress} type="text" name="player-search" placeholder="Search..." />
         <button disabled={waiting} className="material-icons-outlined" onClick={addPlayer}>add_circle_outline</button>
       </div>
-
+      <div id="error" className="error">No replays found!</div>
       <select id="selectPlayerDropdown" value={selectedPlayer} onChange={e => setSelectedPlayer(e.target.value)} >
         <option value="" hidden>Select Player</option>
         {players.map(player => {
