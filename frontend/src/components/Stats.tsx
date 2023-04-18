@@ -1,7 +1,8 @@
 import React from "react";
 import { CircularProgressbar } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
-import { PlayerStats } from "../scripts/model";
+import { FVal, PlayerStats } from "../scripts/model";
+import { ListFormat } from "typescript";
 
 function StatsDial(percentage: number) {
     let r = 0, g = 0, b = 0;
@@ -67,13 +68,18 @@ function StatsDial(percentage: number) {
     );
 }
 
-function SubScore(scoreTitle: string, min: number, max: number, playerVal: number){
+function SubScore(statList: FVal[]){
     return(
-        <div id='subscores'>
-            <p>{scoreTitle}</p>
-            <div id='min'> {min}</div>
-            <div id='you'> {playerVal} </div>
-            <div id='max'> {max} </div>
+        <div id='breakdown'>
+            {statList.map(stat => {
+                     return (
+                        <div id='subscores'>
+                            <p> {stat.stat_name} </p>
+                            <div id='min'> {stat.minimum} </div>
+                            <div id='you'> {stat.player_val} </div>
+                            <div id='max'> {stat.maximum} </div>
+                        </div>
+                        )})}
         </div>
     )
 }
@@ -98,12 +104,8 @@ function Stats({ stats, name }: { stats: { [name: string]: PlayerStats }, name: 
 
             <div id='scoreBreakdown'>
                 <p id='scoreBreakdownLabel'>Score Breakdown</p>
-                <div id='breakdown'>
-                    {/* {SubScore()}  */}
-                </div>
-                <div id='breakdown'>
-                    {/* {SubScore()} */}
-                </div>
+                    {SubScore(stats[name].stat_vals.off_vals)}
+                    {SubScore(stats[name].stat_vals.def_vals)}
             </div>
         </section>
     );
