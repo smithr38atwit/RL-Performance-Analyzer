@@ -27,7 +27,7 @@ function PlayerBox(
   }
 
   async function addPlayer() {
-    document.getElementById("error")!.style.visibility="hidden";
+    document.getElementById("error")!.style.visibility = "hidden";
     setWaiting(true);
     const name = playerNameRef.current!.value;
     if (name === '' || players.length === 3 || players.filter(player => player.name === name).length > 0) {
@@ -46,13 +46,13 @@ function PlayerBox(
         const newPlayers: PlayerModel[] = [...prevPlayers, { name: name, hasReplays: hasReplays }];
         return newPlayers;
       });
-  
+
       if (hasReplays) setSelectedPlayer(name);
       document.getElementById(`placeholder${players.length}`)!.style.display = "none";
-      
+
     }
     else {
-      document.getElementById("error")!.style.visibility="visible";
+      document.getElementById("error")!.style.visibility = "visible";
     }
     playerNameRef.current!.value = '';
     setWaiting(false)

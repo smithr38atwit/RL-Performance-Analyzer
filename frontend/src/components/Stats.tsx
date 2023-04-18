@@ -1,7 +1,8 @@
 import React from "react";
 import { CircularProgressbar } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
-import { PlayerStats } from "../scripts/model";
+import { FVal, PlayerStats } from "../scripts/model";
+import { ListFormat } from "typescript";
 
 function StatsDial(percentage: number) {
     let r = 0, g = 0, b = 0;
@@ -67,6 +68,29 @@ function StatsDial(percentage: number) {
     );
 }
 
+function SubScore(statList: FVal[]){
+    return(
+        <div id='breakdown'>
+            {statList.map(stat => {
+                     return (
+                        <div id='subscores'>
+                            <p id='label'> {stat.stat_name} </p>
+                            <div id='breakdownscores'>
+                                <div id='min'> {stat.minimum} </div>
+                                <div id='you'> {stat.player_val} </div>
+                                <div id='max'> {stat.maximum} </div>
+                            </div>
+                            <div id='breakdownscorelabels'>
+                                <p id="minlabel">Min.</p>
+                                <p id="youlabel">You</p>
+                                <p id="maxlabel">Max.</p>
+                            </div>
+                        </div>
+                )})}
+        </div>
+    )
+}
+
 function Stats({ stats, name }: { stats: { [name: string]: PlayerStats }, name: string }) {
     const replayDetails = stats[name].replay_details;
     let winloss = 'T';
@@ -105,6 +129,22 @@ function Stats({ stats, name }: { stats: { [name: string]: PlayerStats }, name: 
                     {StatsDial(stats[name].overall)}
                     <p className="score-label">Overall</p>
                 </div>
+            </div>
+
+            <div id='scoreBreakdown'>
+                <div id='scoreBreakdownLabel'>Score Breakdown</div>
+                <div className='titleContainer'>
+                    <hr className="rounded"></hr>
+                    <div id='breakdownlabel'> Offense </div>
+                    <hr className="rounded"></hr>
+                </div>
+                {SubScore(stats[name].stat_vals.off_vals)}
+                <div className='titleContainer'>
+                    <hr className="rounded"></hr>
+                    <div id='breakdownlabel'> Defense</div>
+                    <hr className="rounded"></hr>
+                </div>
+                {SubScore(stats[name].stat_vals.def_vals)}
             </div>
         </section>
     );

@@ -53,7 +53,7 @@ async def get_recent_replays(player_name: str):
     replay_id = replays.list[0].id
 
     #testing:
-    # replay_id = 'e693f6b8-8734-417a-a70a-80704d9d38d3'
+    # replay_id = 'e693f6b8-8731-117a-a70a-80701d9d38d3'
     # player_name = 'EmpereurTrou78'
 
     r = requests.get(f'{bc_url}replays/{replay_id}', headers=headers) # Get specific replay
@@ -66,7 +66,7 @@ async def get_recent_replays(player_name: str):
     # testing
     # print('Replay ID: ' + str(replay.id))
     # if player_name == 'a': return {'offense': 70, 'defense': 90, 'overall': 80}
-    # if player_name == 'b': return {'offense': 40, 'defense': 60, 'overall': 50}
+    # if player_name == 'b': return {'offense': 10, 'defense': 60, 'overall': 50}
     # if player_name == 'c': return {'offense': 100, 'defense': 20, 'overall': 60}
 
     # return calculate_scores(replay, player_name)
@@ -367,7 +367,7 @@ def game_stats(replay: DetailedReplay, player_name: str):
     max_SP = max(all_SP)
     min_SP = min(all_SP)
 
-    sp_trio = StatTrio(stat_name="Shooting Percentage", minimum=min_SP, player_val=player_SP, maximum=max_SP)
+    sp_trio = StatTrio(stat_name="Shooting %", minimum=round(min_SP, 1), player_val=round(player_SP,1), maximum=round(max_SP,1))
     all_stats.off_vals.append(sp_trio)
 
     max_shots = max(all_shots)
@@ -391,7 +391,7 @@ def game_stats(replay: DetailedReplay, player_name: str):
     max_off_half = max(all_off_half)
     min_off_half = min(all_off_half)
 
-    off_half_trio = StatTrio(stat_name="Offensive Half Time", minimum=min_off_half, player_val=player_off_half, maximum=max_off_half)
+    off_half_trio = StatTrio(stat_name="Offensive Half Time", minimum=round(min_off_half,1), player_val=round(player_off_half,1), maximum=round(max_off_half,1))
     all_stats.off_vals.append(off_half_trio)
 
     max_pos = max(all_pos)
@@ -404,13 +404,13 @@ def game_stats(replay: DetailedReplay, player_name: str):
     max_SPA = max(all_SPA)
     min_SPA = min(all_SPA)
 
-    spa_trio = StatTrio(stat_name="Shooting Percentage Against", minimum=min_SPA, player_val=player_SPA, maximum=max_SPA)
+    spa_trio = StatTrio(stat_name="Shooting % Against", minimum=round(min_SPA*100,1), player_val=round(player_SPA*100,1), maximum=round(max_SPA*100,1))
     all_stats.def_vals.append(spa_trio)
 
     max_def_half = max(all_def_half)
     min_def_half = min(all_def_half)
 
-    def_half_trio = StatTrio(stat_name="Defensive Half Time", minimum=min_def_half, player_val=player_def_half, maximum=max_def_half)
+    def_half_trio = StatTrio(stat_name="Defensive Half Time", minimum=round(min_def_half,1), player_val=round(player_def_half,1), maximum=round(max_def_half,1))
     all_stats.def_vals.append(def_half_trio)
 
     max_saves = max(all_saves)
@@ -422,7 +422,7 @@ def game_stats(replay: DetailedReplay, player_name: str):
     max_neutral_pos = max(all_neutral_pos)
     min_neutral_pos = min(all_neutral_pos)
 
-    neutral_trio = StatTrio(stat_name="Neutral Third Time", minimum=min_neutral_pos, player_val=player_neutral_pos, maximum=max_neutral_pos)
+    neutral_trio = StatTrio(stat_name="Neutral Third Time", minimum=round(min_neutral_pos,1), player_val=round(player_neutral_pos,1), maximum=round(max_neutral_pos,1))
     all_stats.def_vals.append(neutral_trio)
 
     max_bpm = max(all_bpm)
@@ -433,5 +433,5 @@ def game_stats(replay: DetailedReplay, player_name: str):
 
     return all_stats
 
-    
+
 

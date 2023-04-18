@@ -15,6 +15,9 @@ header {
     margin-bottom: 36px;
 
     font-family: sans-serif;
+    background-color: #e5e5e5;
+    padding: 20px 10px;
+    border-radius: 8px;
 }
 
 header div {
@@ -46,7 +49,7 @@ header div:last-child a:hover {
 
 #player-stats {
     width: 100%;
-    height: 800px;
+    height: fit-content;
     background-color: #4457d4;
     padding: 32px;
 }
@@ -68,4 +71,141 @@ header div:last-child a:hover {
     font-family: sans-serif;
     font-size: 30px;
     font-weight: bolder;
+}
+
+/* subscores */
+#subscores {
+    margin-top: 20px;
+    background-color: #e5e5e5;
+    margin-bottom: 20px;
+    width: 250px;
+    height: 200px;
+    border-radius: 25%;
+}
+
+#label {
+    text-align: center;
+    margin-bottom: -12px;
+    font-family: sans-serif;
+    font-size: 15px;
+    font-weight: bolder;
+}
+
+#breakdown {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+
+#breakdownscores {
+    display: flex;
+    justify-content: center;
+    gap: 2.5px;
+}
+
+#breakdownlabel {
+    font-family: sans-serif;
+    font-size: 25px;
+    font-weight: bolder;
+}
+
+#breakdownscorelabels {
+    display: flex;
+    justify-content: center;
+    gap: 25%;
+    font-size: 13px;
+}
+
+
+
+
+#max,
+#min,
+#you {
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 25%;
+    margin-bottom: -10px;
+
+}
+
+#min,
+#max {
+    font-family: sans-serif;
+    font-size: 20px;
+    font-weight: bolder;
+}
+
+#min {
+    background-color: rgb(195, 71, 71);
+    width: 70px;
+    height: 80px;
+    margin-top: 35px;
+}
+
+#max {
+    background-color: rgb(83, 248, 100);
+    width: 70px;
+    height: 80px;
+    margin-top: 35px;
+}
+
+#you {
+    background-color: rgb(0, 123, 238);
+    width: 100px;
+    height: 100px;
+    margin-top: 25px;
+    font-family: sans-serif;
+    font-size: 30px;
+    font-weight: bolder;
+}
+
+#subscores::after {
+    content: "";
+}
+
+
+#scoreBreakdownLabel {
+    font-family: sans-serif;
+    font-size: 30px;
+    font-weight: bolder;
+    text-align: center;
+    height: 50%;
+    width: 25%;
+    padding: 5px;
+    border-radius: 10px;
+    border: 7px solid #e5e5e5;
+    background-color: #e5e5e5;
+    margin: auto;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+}
+
+hr.rounded {
+    background-color: #272635;
+    border-radius: 5px;
+    width: 50%;
+    height: 8px;
+}
+
+hr.roundedTop {
+    background-color: #272635;
+    border-radius: 5px;
+    height: 8px;
+    width: 100%;
+}
+
+.titleContainer {
+    display: flex;
+    align-content: center;
+    gap: 40px;
+    padding-top: 20px;
+
+    justify-content: center;
+    align-items: center;
 }
