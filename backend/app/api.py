@@ -358,7 +358,7 @@ def game_stats(replay: DetailedReplay, player_name: str):
     max_SP = max(all_SP)
     min_SP = min(all_SP)
 
-    sp_trio = StatTrio(stat_name="Shooting Percentage", minimum=min_SP, player_val=player_SP, maximum=max_SP)
+    sp_trio = StatTrio(stat_name="Shooting %", minimum=min_SP, player_val=player_SP, maximum=max_SP)
     all_stats.off_vals.append(sp_trio)
 
     max_shots = max(all_shots)
@@ -395,7 +395,7 @@ def game_stats(replay: DetailedReplay, player_name: str):
     max_SPA = max(all_SPA)
     min_SPA = min(all_SPA)
 
-    spa_trio = StatTrio(stat_name="Shooting Percentage Against", minimum=min_SPA, player_val=player_SPA, maximum=max_SPA)
+    spa_trio = StatTrio(stat_name="Shooting % Against", minimum=min_SPA, player_val=player_SPA, maximum=max_SPA)
     all_stats.def_vals.append(spa_trio)
 
     max_def_half = max(all_def_half)
